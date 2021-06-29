@@ -1,7 +1,7 @@
 {
-  "name": "fs-app-template",
+  "name": "Oapstone-Offline-Reader",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "an app that scrapes websites to save articles for reading offline",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
