@@ -1,5 +1,5 @@
 {
-  "name": "Oapstone-Offline-Reader",
+  "name": "Capstone-Offline-Reader",
   "version": "2.0.0",
   "description": "an app that scrapes websites to save articles for reading offline",
   "main": "index.js",
