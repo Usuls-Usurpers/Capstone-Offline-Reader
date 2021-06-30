@@ -1,5 +1,5 @@
 {
-  "name": "Capstone-Offline-Reader",
+  "name": "Cache-22",
   "version": "2.0.0",
   "description": "an app that scrapes websites to save articles for reading offline",
   "main": "index.js",
