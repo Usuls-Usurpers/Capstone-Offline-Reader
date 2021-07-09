@@ -27,7 +27,6 @@ const mediumScraper = async (URL) => {
     addedAt: date,
     isComplete: false,
   };
-  console.log('data>>>>>', data);
   await browser.close();
   return data;
 };

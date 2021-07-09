@@ -2,12 +2,12 @@
 
 const firebase = require('../db/db');
 const User = require('../db/models/User');
-const firestore = firebase.firestore();
+const db = firebase.firestore();
 
 const addUser = async (req, res, next) => {
   try {
     const data = req.body;
-    await firestore.collection('users').doc().set(data);
+    await db.collection('users').doc().set(data);
     res.send('Record saved successfuly');
   } catch (error) {
     res.status(400).send(error.message);
@@ -16,7 +16,7 @@ const addUser = async (req, res, next) => {
 
 const getAllUsers = async (req, res, next) => {
   try {
-    const users = await firestore.collection('users');
+    const users = await db.collection('users');
     const data = await users.get();
     const usersArray = [];
     if (data.empty) {
