@@ -1,40 +1,34 @@
 const puppeteer = require('puppeteer');
 
-const wikipediaScraper = async (URL) => {
+const nytimesScraper = async (URL) => {
   const browser = await puppeteer.launch();
 
   const page = await browser.newPage();
 
   await page.goto(URL, { waitUntil: 'networkidle2' });
 
-  await page.waitForSelector('#content');
+  await page.waitForSelector('article');
 
   const article = await page.evaluate(
-    () => document.querySelector('#content').innerHTML
+    () => document.querySelector('article').innerHTML
   );
 
   const title = await page.evaluate(
-    () => document.querySelector('#firstHeading').innerHTML
-  );
-
-  const content = await page.evaluate(
-    () => document.querySelector('#bodyContent').innerHTML
+    () => document.querySelector('h1').innerHTML
   );
 
   const date = new Date().toDateString();
 
   const data = {
-    content: content,
+    article: article,
     url: URL,
     title: title,
     addedAt: date,
     isComplete: false,
   };
-
-  console.log('data>>>>>', data);
+  // console.log('data>>>>>', data);
   await browser.close();
   return data;
-  // return article;
 };
 
-module.exports = wikipediaScraper;
+module.exports = nytimesScraper;
