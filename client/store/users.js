@@ -1,44 +1,40 @@
-'use strict';
+import axios from 'axios'
 
-const firebase = require('../../server/db/db');
-const User = require('../../server/db/models/User');
-const firestore = firebase.firestore();
+//ACTION TYPES
 
-const addUser = async (req, res, next) => {
-  try {
-    const data = req.body;
-    await firestore.collection('users').doc().set(data);
-    res.send('Record saved successfuly');
-  } catch (error) {
-    res.status(400).send(error.message);
+const SET_USERS = "SET_USERS"
+
+//ACTION CREATORS
+
+export const setUsers = (users) => {
+  return {
+    type: SET_USERS,
+    users
   }
-};
+}
 
-const getAllUsers = async (req, res, next) => {
-  try {
-    const users = await firestore.collection('users');
-    const data = await users.get();
-    const usersArray = [];
-    if (data.empty) {
-      res.status(404).send('No user found');
-    } else {
-      data.forEach((doc) => {
-        const user = new User(
-          doc.id,
-          doc.data().email,
-          doc.data().firstName,
-          doc.data().lastName
-        );
-        usersArray.push(user);
-      });
-      res.send(usersArray);
+//THUNK CREATORS
+
+export const fetchUsers = () => {
+  return async (dispatch) => {
+    try {
+      const {data} = await axios.get('/api/users')
+      dispatch(setUsers(data))
     }
-  } catch (error) {
-    res.status(400).send(error.message);
+    catch (error){
+      console.error(error)
+    }
   }
-};
+}
 
-module.exports = {
-  addUser,
-  getAllUsers,
-};
+
+// STUDENT SUB_REDUCER
+export default function studentsReducer(users = [], action) {
+  switch (action.type) {
+    case SET_USERS:
+      return action.users
+
+    default:
+      return users
+  }
+}

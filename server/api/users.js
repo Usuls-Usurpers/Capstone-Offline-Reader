@@ -1,5 +1,5 @@
 const express = require("express");
-const { addUser, getAllUsers } = require("../../client/store/users");
+const { addUser, getAllUsers } = require("../firestore/users");
 
 const router = express.Router();
 
