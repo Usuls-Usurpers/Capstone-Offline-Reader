@@ -22,3 +22,10 @@ app.get('/', (req, res) =>
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`));
+
+// error handling endware
+app.use((err, req, res, next) => {
+  console.error(err);
+  console.error(err.stack);
+  res.status(err.status || 500).send(err.message || 'Internal server error.');
+});

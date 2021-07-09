@@ -3,8 +3,8 @@ const { addUser, getAllUsers } = require("../firestore/users");
 
 const router = express.Router();
 
-router.post("/user", addUser);
-router.get("/users", getAllUsers);
+router.post("/", addUser);
+router.get("/", getAllUsers);
 
 module.exports = {
   routes: router,
