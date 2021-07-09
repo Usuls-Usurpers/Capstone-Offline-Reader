@@ -1,13 +1,13 @@
-import React from 'react'
-import Routes from './Routes'
+import React from "react";
+import Routes from "./Routes";
 
 const App = () => {
   return (
     <div>
       <h1>hello world</h1>
-        <Routes/>
+      <Routes />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
