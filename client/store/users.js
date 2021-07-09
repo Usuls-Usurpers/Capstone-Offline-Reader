@@ -29,7 +29,7 @@ export const fetchUsers = () => {
 
 
 // STUDENT SUB_REDUCER
-export default function studentsReducer(users = [], action) {
+export default function userReducer(users = [], action) {
   switch (action.type) {
     case SET_USERS:
       return action.users
