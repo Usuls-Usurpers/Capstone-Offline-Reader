@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 app.use("/api", userRoutes.routes);
 app.use("/api", articleRoutes.routes);
+app.use("/auth", require("./auth"))
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "..", "public/index.html"))
 );
