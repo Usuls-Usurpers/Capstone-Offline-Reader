@@ -31,10 +31,8 @@ const wikipediaScraper = async (URL) => {
     isComplete: false,
   };
 
-  // console.log('data>>>>>', data);
   await browser.close();
   return data;
-  // return article;
 };
 
 module.exports = wikipediaScraper;

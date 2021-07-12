@@ -7,16 +7,8 @@ const scraperObj = require('../puppeteer');
 
 const addArticle = async (req, res, next) => {
   try {
-    // console.log('scraperObj>>>', scraperObj);
-    // console.log(
-    //   'MEDIUM>>>',
-    //   await scraperObj.medium(
-    //     'https://medium.com/@wayweroll/how-to-create-an-animated-photo-for-medium-d5b2820e9c5'
-    //   )
-    // );
-    // const data = req.body;
-    // determine which scraper to use:
-    const url = 'https://en.wikipedia.org/wiki/Tumbler_(glass)';
+    const url =
+      'https://medium.com/creatures/3-things-you-probably-didnt-know-about-cats-cb643c57b382';
     let resource;
     if (url.includes('medium')) {
       resource = scraperObj.medium;
@@ -26,9 +18,6 @@ const addArticle = async (req, res, next) => {
       resource = scraperObj.wikipedia;
     }
     const data = await resource(url);
-    // const data = await scraperObj.wikipedia(
-    //   'https://en.wikipedia.org/wiki/Cat'
-    // );
     await db
       .collection('users')
       .doc('t2D8ahpahoxhxE8xvOG4')
