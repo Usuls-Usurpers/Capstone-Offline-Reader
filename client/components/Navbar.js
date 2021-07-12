@@ -12,6 +12,7 @@ class Navbar extends Component {
       <nav>
       {this.props.isLoggedIn ? (
       <div>
+        <Link to="/home">home</Link>
         <Link to="/users">users</Link>
         <Link to="/articles">articles</Link>
         <Link to="/login" onClick={this.props.handleClick} id="logout">
@@ -19,6 +20,7 @@ class Navbar extends Component {
         </Link>
         </div>) :
         (<div>
+        <Link to="/home">home</Link>
         <Link to="/users">users</Link>
         <Link to="/articles">articles</Link>
         <Link to="/login">login</Link>
@@ -32,7 +34,7 @@ class Navbar extends Component {
 
 const mapState = (state) => {
   return {
-    isLoggedIn: !!state.auth.user,
+    isLoggedIn: !!state.auth.uid,
   };
 };
 

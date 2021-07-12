@@ -16,41 +16,21 @@ const setAuth = auth => ({type: SET_AUTH, auth})
 /**
  * THUNK CREATORS
  */
-// export const me = () => async dispatch => {
-//   // const token = window.localStorage.getItem(TOKEN)
-//   // console.log('token =>', token)
-//   if (token) {
-//     const res = await axios.get('/auth/me', {
-//       headers: {
-//         authorization: token
-//       }
-//     })
-//     return dispatch(setAuth(res.data))
-//   }
-// }
 
-// export const me = () => async dispatch => {
-//     // const token = window.localStorage.getItem(TOKEN)
-//       const res = await axios.get('/auth/me')
-//       console.log('res.data', res.data)
-//       return dispatch(setAuth(res.data))
-// }
-
-export const authenticate = (email, password, method) => async dispatch => {
+export const authenticate = (infoObj, history) => async dispatch => {
   try {
+    const [ email, password, method ] = infoObj
     const res = await axios.post(`/auth/${method}`, {email, password})
-    console.log('res', res)
     dispatch(setAuth(res.data))
+    history.push('/home')
   } catch (authError) {
     return dispatch(setAuth({error: authError}))
   }
 }
 
-export const logout = () => async dispatch => {
-  // window.localStorage.removeItem(TOKEN)
+export const logout = (history) => async dispatch => {
   try {
   const res = await axios.get('/auth/logout')
-  console.log('res.data', res.data)
   dispatch({type: SET_AUTH, auth: {}})
   history.push('/login')
   } catch (error) {
