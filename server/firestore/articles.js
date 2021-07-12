@@ -59,7 +59,23 @@ const getAllArticles = async (req, res, next) => {
   }
 };
 
+const deleteArticle = async (req, res, next) => {
+  try {
+    // const id = req.params.id;
+    await db
+      .collection('users')
+      .doc('t2D8ahpahoxhxE8xvOG4')
+      .collection('Articles')
+      .doc('U3mDGvfOyjiyqccyzzqa')
+      .delete();
+    res.send('Record deleted successfuly');
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
 module.exports = {
   addArticle,
   getAllArticles,
+  deleteArticle,
 };
