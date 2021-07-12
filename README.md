@@ -7,8 +7,12 @@ Have an article you want to read later, but aren’t sure you’ll have internet
 
 ### Tech Stack
 
+React - front end
+Redux - maintaining global state
+Express - functioning as a proxy server, passing calls onto firebase/firestore
 PWA - for mobile app
 Puppeteer - web scraping
 Firestore - cloud database
+Firebase - Authentication
 Chrome extension
 
