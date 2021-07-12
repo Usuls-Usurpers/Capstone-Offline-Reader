@@ -19,7 +19,7 @@ const AuthForm = props => {
         </div>
         <div>
           <label htmlFor="password">
-            <small>Password</small>
+            <small>password</small>
           </label>
           <input name="password" type="password" />
         </div>
@@ -55,14 +55,14 @@ const mapSignup = state => {
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(authenticate(email, password, formName))
+      dispatch(authenticate([email, password, formName], history))
     }
   }
 }
