@@ -9,7 +9,7 @@ const getAllArticles = async (req, res, next) => {
   try {
     const articles = await db
       .collection("users")
-      .doc("HCP12AR3aNctzasRsyWtPWJeHJL2")
+      .doc("KmRkLorXqpRLug4pbK1Fs8g15fx1")
       .collection("Articles");
     const data = await articles.get();
     const articlesArray = [];
@@ -36,12 +36,14 @@ const getAllArticles = async (req, res, next) => {
 
 const getSingleArticle = async (req, res, next) => {
   try {
-    // const id = req.params.id;
+    const id = req.params.articleId;
+    console.log("ID: ", id);
+    console.log("req.params: ", req.params);
     const article = await db
       .collection("users")
-      .doc("t2D8ahpahoxhxE8xvOG4")
+      .doc("KmRkLorXqpRLug4pbK1Fs8g15fx1")
       .collection("Articles")
-      .doc("c5HnOtaD45D8RmipTh9e");
+      .doc(id);
     const data = await article.get();
     if (!data.exists) {
       res.status(404).send("Article not found");
