@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import articlesReducer, { fetchArticles } from "../store/articles"
+import { fetchArticles } from "../store/articles";
 
 class AllArticles extends React.Component {
   componentDidMount() {
@@ -13,10 +13,8 @@ class AllArticles extends React.Component {
           <ul className="listAll">
             {this.props.articles.map((article) => {
               return (
-                <li key={article.id} className="listItem">
-                  <h3>
-                    {article.title}
-                  </h3>
+                <li key={article.id} className="article-items">
+                  <a href={`/articles/${article.id}`}>{article.title}</a>
                 </li>
               );
             })}
