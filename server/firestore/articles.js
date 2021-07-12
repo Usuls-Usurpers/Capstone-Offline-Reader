@@ -57,8 +57,7 @@ const getSingleArticle = async (req, res, next) => {
 
 const addArticle = async (req, res, next) => {
   try {
-    const url =
-      "https://medium.com/creatures/3-things-you-probably-didnt-know-about-cats-cb643c57b382";
+    const {url} = req.body;
     let resource;
     if (url.includes("medium")) {
       resource = scraperObj.medium;
@@ -74,7 +73,8 @@ const addArticle = async (req, res, next) => {
       .collection("Articles")
       .doc()
       .set(data);
-    res.send("Record saved successfuly");
+    res.send(data);
+    // res.send('Record saved successfuly');
   } catch (error) {
     res.status(400).send(error.message);
   }
@@ -89,7 +89,9 @@ const deleteArticle = async (req, res, next) => {
       .collection("Articles")
       .doc("U3mDGvfOyjiyqccyzzqa")
       .delete();
-    res.send("Record deleted successfuly");
+
+    // res.send('Record deleted successfuly');
+
   } catch (error) {
     res.status(400).send(error.message);
   }

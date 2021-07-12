@@ -2,8 +2,9 @@ import axios from "axios";
 
 //ACTION TYPES
 
-const SET_ARTICLES = "SET_ARTICLES";
-const ADD_ACTICLE = "ADD_ACTICLE";
+const SET_ARTICLES = 'SET_ARTICLES'
+const ADD_ARTICLE = 'ADD_ARTICLE'
+
 
 //ACTION CREATORS
 
@@ -16,10 +17,11 @@ export const setArticles = (articles) => {
 
 export const addArticle = (article) => {
   return {
-    type: ADD_ACTICLE,
-    article,
-  };
-};
+    type: ADD_ARTICLE,
+    article
+  }
+} 
+
 
 //THUNK CREATORS
 
@@ -47,13 +49,14 @@ export const addArticleByURL = (url) => {
   };
 };
 
-// STUDENT SUB_REDUCER
+// SUB_REDUCER
 export default function articlesReducer(articles = [], action) {
   switch (action.type) {
     case SET_ARTICLES:
-      return action.articles;
-    case ADD_ACTICLE:
-      return [...articles, action.article];
+
+      return action.articles
+    case ADD_ARTICLE:
+      return [...articles, action.article]
     default:
       return articles;
   }
