@@ -1,6 +1,7 @@
 const express = require('express');
 const {
   getAllArticles,
+  getSingleArticle,
   addArticle,
   deleteArticle,
 } = require('../firestore/articles');
@@ -8,6 +9,7 @@ const {
 const router = express.Router();
 
 router.get('/articles', getAllArticles);
+router.get('/article', getSingleArticle);
 router.post('/article', addArticle);
 router.delete('/article', deleteArticle);
 
