@@ -55,7 +55,7 @@ const getSingleArticle = async (req, res, next) => {
 
 const addArticle = async (req, res, next) => {
   try {
-    const url = req.body;
+    const {url} = req.body;
     let resource;
     if (url.includes('medium')) {
       resource = scraperObj.medium;

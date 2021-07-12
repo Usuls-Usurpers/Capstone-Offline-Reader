@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import addArticleByURL from '../store/articles'
 
 class URLForm extends Component {
     constructor (props){
@@ -15,9 +16,11 @@ class URLForm extends Component {
             [event.target.name]: event.target.value
         })
     }
-    handleSubmit(event){
+    handleSubmit = async (event) => {
         event.preventDefault()
-        this.props.addArticleByURL(this.state.URL)
+        console.log(this.state.URL)
+        await this.props.addArticleByURL(this.state.URL)
+        this.setState({URL:''})
     }
     render() {
         const {URL} =  this.state
