@@ -5,42 +5,6 @@ const Article = require('../db/models/Article');
 const db = firebase.firestore();
 const scraperObj = require('../puppeteer');
 
-const addArticle = async (req, res, next) => {
-  try {
-    // console.log('scraperObj>>>', scraperObj);
-    // console.log(
-    //   'MEDIUM>>>',
-    //   await scraperObj.medium(
-    //     'https://medium.com/@wayweroll/how-to-create-an-animated-photo-for-medium-d5b2820e9c5'
-    //   )
-    // );
-    // const data = req.body;
-    // determine which scraper to use:
-    const url = 'https://en.wikipedia.org/wiki/Tumbler_(glass)';
-    let resource;
-    if (url.includes('medium')) {
-      resource = scraperObj.medium;
-    } else if (url.includes('nytimes')) {
-      resource = scraperObj.nytimes;
-    } else if (url.includes('wikipedia')) {
-      resource = scraperObj.wikipedia;
-    }
-    const data = await resource(url);
-    // const data = await scraperObj.wikipedia(
-    //   'https://en.wikipedia.org/wiki/Cat'
-    // );
-    await db
-      .collection('users')
-      .doc('t2D8ahpahoxhxE8xvOG4')
-      .collection('Articles')
-      .doc()
-      .set(data);
-    res.send('Record saved successfuly');
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-};
-
 const getAllArticles = async (req, res, next) => {
   try {
     const articles = await db
@@ -70,7 +34,68 @@ const getAllArticles = async (req, res, next) => {
   }
 };
 
+const getSingleArticle = async (req, res, next) => {
+  try {
+    // const id = req.params.id;
+    const article = await db
+      .collection('users')
+      .doc('t2D8ahpahoxhxE8xvOG4')
+      .collection('Articles')
+      .doc('c5HnOtaD45D8RmipTh9e');
+    const data = await article.get();
+    if (!data.exists) {
+      res.status(404).send('Article not found');
+    } else {
+      res.send(data.data());
+    }
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+const addArticle = async (req, res, next) => {
+  try {
+    const url =
+      'https://medium.com/creatures/3-things-you-probably-didnt-know-about-cats-cb643c57b382';
+    let resource;
+    if (url.includes('medium')) {
+      resource = scraperObj.medium;
+    } else if (url.includes('nytimes')) {
+      resource = scraperObj.nytimes;
+    } else if (url.includes('wikipedia')) {
+      resource = scraperObj.wikipedia;
+    }
+    const data = await resource(url);
+    await db
+      .collection('users')
+      .doc('t2D8ahpahoxhxE8xvOG4')
+      .collection('Articles')
+      .doc()
+      .set(data);
+    res.send('Record saved successfuly');
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+const deleteArticle = async (req, res, next) => {
+  try {
+    // const id = req.params.id;
+    await db
+      .collection('users')
+      .doc('t2D8ahpahoxhxE8xvOG4')
+      .collection('Articles')
+      .doc('U3mDGvfOyjiyqccyzzqa')
+      .delete();
+    res.send('Record deleted successfuly');
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
 module.exports = {
   addArticle,
   getAllArticles,
+  getSingleArticle,
+  deleteArticle,
 };

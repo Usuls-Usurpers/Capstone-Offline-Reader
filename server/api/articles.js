@@ -1,10 +1,17 @@
 const express = require('express');
-const { addArticle, getAllArticles } = require('../firestore/articles');
+const {
+  getAllArticles,
+  getSingleArticle,
+  addArticle,
+  deleteArticle,
+} = require('../firestore/articles');
 
 const router = express.Router();
 
-router.post('/article', addArticle);
 router.get('/articles', getAllArticles);
+router.get('/article', getSingleArticle);
+router.post('/article', addArticle);
+router.delete('/article', deleteArticle);
 
 module.exports = {
   routes: router,
