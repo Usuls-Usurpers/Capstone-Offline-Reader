@@ -17,6 +17,7 @@ class URLForm extends Component {
     }
     handleSubmit(event){
         event.preventDefault()
+        this.props.addArticleByURL(this.state.URL)
     }
     render() {
         const {URL} =  this.state
@@ -34,7 +35,7 @@ class URLForm extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addArticleByURL: (student) => dispatch(addArticleByURL(URL, history))
+    addArticleByURL: (URL) => dispatch(addArticleByURL(URL, history))
 })
 export default connect(null, mapDispatchToProps)(URLForm)
 
