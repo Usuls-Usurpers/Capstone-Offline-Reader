@@ -1,8 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-import articlesReducer, { fetchArticles } from "../store/articles"
+import { fetchArticles } from "../store/articles";
+import { setArticle } from "../store/singleArticle";
 
 class AllArticles extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log("handle Submit was clicked!");
+    // look into this. Why a string?
+    this.props.setArticle(event.target.value);
+  }
+
   componentDidMount() {
     this.props.fetchArticles();
   }
@@ -13,10 +27,11 @@ class AllArticles extends React.Component {
           <ul className="listAll">
             {this.props.articles.map((article) => {
               return (
-                <li key={article.id} className="listItem">
-                  <h3>
-                    {article.title}
-                  </h3>
+                <li key={article.id} className="article-items">
+                  <h3>{article.title}</h3>
+                  <button value={article} onClick={this.handleSubmit}>
+                    View Article
+                  </button>
                 </li>
               );
             })}
@@ -38,6 +53,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchArticles: () => dispatch(fetchArticles()),
+    setArticle: (article) => dispatch(setArticle(article)),
   };
 };
 
