@@ -1,20 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import ReactHtmlParser from 'react-html-parser';
+import ReactHtmlParser from "react-html-parser";
 //import { Link } from "react-router-dom";
 
 class SingleArticle extends React.Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.handleClick = this.handleClick.bind(this);
-  // }
-
-  // componentDidMount() {
-  //   const id = this.props.match.params.id;
-  //   console.log("id: ", id);
-  //   this.props.loadSingleArticle(id);
-  // }
+  componentDidMount() {
+    console.log("this.props in Single Article: ", this.props);
+  }
 
   render() {
     const article = this.props.article || {};

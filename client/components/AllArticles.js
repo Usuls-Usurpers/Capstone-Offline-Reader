@@ -13,20 +13,18 @@ class AllArticles extends React.Component {
 
   async componentDidMount() {
     try {
-        console.log('articles component userid', this.props.userId)
-        await this.props.fetchArticles(this.props.userId);
+      console.log("this.props", this.props);
+      await this.props.fetchArticles(this.props.userId);
     } catch (err) {
-        console.log(err)
+      console.log(err);
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("handle Submit was clicked!");
-    console.log(event.target.value)
-    console.dir(this.props.articles[event.target.value])
+    console.dir(this.props.articles[event.target.value]);
     this.props.setArticle(this.props.articles[event.target.value]);
-    this.props.history.push("/articles/view-article")
+    this.props.history.push("/articles/view-article");
   }
   handleDelete(event) {
     event.preventDefault();
@@ -35,22 +33,22 @@ class AllArticles extends React.Component {
     return (
       <div>
         {this.props.isLoggedIn ? (
-        <div>
-          <ul className="listAll">
-            {this.props.articles.map((article, index) => {
-              return (
-                <li key={article.id} className="article-items">
-                  <h3>{article.title}</h3>
-                  <button value={index} onClick={this.handleSubmit}>
-                    View Article
-                  </button>
-                  <button value={index} onClick={this.handleDelete}>
-                    remove
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+          <div>
+            <ul className="listAll">
+              {this.props.articles.map((article, index) => {
+                return (
+                  <li key={article.id} className="article-items">
+                    <h3>{article.title}</h3>
+                    <button value={index} onClick={this.handleSubmit}>
+                      View Article
+                    </button>
+                    <button value={index} onClick={this.handleDelete}>
+                      remove
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         ) : (
           <h1>loading...</h1>
