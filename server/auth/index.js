@@ -2,7 +2,6 @@ const firebase = require('../db/db');
 const express = require("express");
 const router = express.Router();
 const db = firebase.firestore();
-// const User = require('../db/models/User');
 
 const auth = firebase.auth()
 module.exports = router;

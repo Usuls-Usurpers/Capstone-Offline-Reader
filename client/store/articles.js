@@ -25,11 +25,15 @@ export const addArticle = (article) => {
 
 //THUNK CREATORS
 
-export const fetchArticles = () => {
+export const fetchArticles = (infoObj) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("/api/articles");
-      console.log("data", data);
+      console.log('infoObj in thunk', infoObj)
+      const config = { params: {
+        uid: infoObj
+      }}
+      const { data } = await axios.get(`/api/articles/`, config);
+      console.log("data in fetchArticles thunk", data);
       dispatch(setArticles(data));
     } catch (error) {
       console.error(error);
@@ -41,7 +45,7 @@ export const addArticleByURL = (url) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post("/api/article", url);
-      console.log("data", data);
+      // console.log("data", data);
       dispatch(addArticle(data));
     } catch (error) {
       console.error(error);
@@ -53,7 +57,6 @@ export const addArticleByURL = (url) => {
 export default function articlesReducer(articles = [], action) {
   switch (action.type) {
     case SET_ARTICLES:
-
       return action.articles
     case ADD_ARTICLE:
       return [...articles, action.article]
