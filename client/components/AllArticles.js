@@ -22,8 +22,10 @@ class AllArticles extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log("handle Submit was clicked!");
-    // look into this. Why a string?
-    this.props.setArticle(event.target.value);
+    console.log(event.target.value)
+    console.dir(this.props.articles[event.target.value])
+    this.props.setArticle(this.props.articles[event.target.value]);
+    this.props.history.push("/articles/view-article")
   }
 
   render() {
@@ -32,11 +34,11 @@ class AllArticles extends React.Component {
         {this.props.isLoggedIn ? (
         <div>
           <ul className="listAll">
-            {this.props.articles.map((article) => {
+            {this.props.articles.map((article, index) => {
               return (
                 <li key={article.id} className="article-items">
                   <h3>{article.title}</h3>
-                  <button value={article} onClick={this.handleSubmit}>
+                  <button value={index} onClick={this.handleSubmit}>
                     View Article
                   </button>
                 </li>

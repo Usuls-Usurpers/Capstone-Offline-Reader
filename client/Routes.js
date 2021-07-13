@@ -19,7 +19,7 @@ class Routes extends Component {
           <Route path="/home" component={Home} />
           <Route path="/users" component={AllUsers} />
           <Route exact path="/articles" component={AllArticles} />
-          <Route exact path="/articles/:articleId" component={SingleArticle} />
+          <Route exact path="/articles/view-article" component={SingleArticle} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
         </Switch>
