@@ -10,6 +10,15 @@ class AllArticles extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  async componentDidMount() {
+    try {
+        console.log('articles component userid', this.props.userId)
+        await this.props.fetchArticles(this.props.userId);
+    } catch (err) {
+        console.log(err)
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     console.log("handle Submit was clicked!");
@@ -19,13 +28,11 @@ class AllArticles extends React.Component {
     this.props.history.push("/articles/view-article")
   }
 
-  componentDidMount() {
-    this.props.fetchArticles();
-  }
   render() {
     return (
       <div>
-        {this.props.articles.length ? (
+        {this.props.isLoggedIn ? (
+        <div>
           <ul className="listAll">
             {this.props.articles.map((article, index) => {
               return (
@@ -38,6 +45,7 @@ class AllArticles extends React.Component {
               );
             })}
           </ul>
+          </div>
         ) : (
           <h1>loading...</h1>
         )}
@@ -49,12 +57,14 @@ class AllArticles extends React.Component {
 const mapState = (state) => {
   return {
     articles: state.articles,
+    isLoggedIn: !!state.auth.uid,
+    userId: state.auth.uid,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    fetchArticles: () => dispatch(fetchArticles()),
+    fetchArticles: (infoObj) => dispatch(fetchArticles(infoObj)),
     setArticle: (article) => dispatch(setArticle(article)),
   };
 };

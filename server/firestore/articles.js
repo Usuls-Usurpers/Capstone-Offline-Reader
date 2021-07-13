@@ -7,9 +7,11 @@ const scraperObj = require("../puppeteer");
 
 const getAllArticles = async (req, res, next) => {
   try {
+    console.log('req.proxy in allarticles =>', req.query)
+    const userId = req.query.uid
     const articles = await db
       .collection("users")
-      .doc("KmRkLorXqpRLug4pbK1Fs8g15fx1")
+      .doc(`${userId}`)
       .collection("Articles");
     const data = await articles.get();
     const articlesArray = [];
@@ -28,11 +30,12 @@ const getAllArticles = async (req, res, next) => {
         articlesArray.push(article);
       });
       res.send(articlesArray);
-    }
-  } catch (error) {
+      // res.send('Hello World!');
+  }} catch (error) {
     res.status(400).send(error.message);
   }
-};
+
+}
 
 const getSingleArticle = async (req, res, next) => {
   try {

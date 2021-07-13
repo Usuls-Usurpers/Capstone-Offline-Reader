@@ -16,7 +16,7 @@ class URLForm extends Component {
             [event.target.name]: event.target.value
         })
     }
-    handleSubmit = async (event) => {
+    async handleSubmit (event) {
         event.preventDefault()
         console.log(this.state.URL)
         await this.props.addArticleByURL(this.state.URL)
@@ -28,7 +28,7 @@ class URLForm extends Component {
             <div className="add-div" >
                 <h3>Save an Article</h3>
                 <form className="add-form" onSubmit={this.handleSubmit}>
-                    <lable htmlFor="URL">URL</lable>
+                    <label htmlFor="URL">URL</label>
                     <input name="URL" onChange={this.handleChange} value={URL} />
                     <button type="submit">Submit</button>
                 </form>
