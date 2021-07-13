@@ -16,9 +16,10 @@ export const setArticles = (articles) => {
 };
 
 export const addArticle = (article) => {
+  console.log('article in creator', article)
   return {
     type: ADD_ARTICLE,
-    article
+    article,
   }
 } 
 
@@ -28,7 +29,6 @@ export const addArticle = (article) => {
 export const fetchArticles = (infoObj) => {
   return async (dispatch) => {
     try {
-      console.log('infoObj in thunk', infoObj)
       const config = { params: {
         uid: infoObj
       }}
@@ -41,11 +41,14 @@ export const fetchArticles = (infoObj) => {
   };
 };
 
-export const addArticleByURL = (url) => {
+export const addArticleByURL = (infoObj, history) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post("/api/article", url);
-      // console.log("data", data);
+      const userId = infoObj[0]
+      const url = infoObj[1]
+      console.log('url in thunk', url)
+      const { data } = await axios.post(`/api/article`, { userId, url});
+      console.log("data", data);
       dispatch(addArticle(data));
     } catch (error) {
       console.error(error);

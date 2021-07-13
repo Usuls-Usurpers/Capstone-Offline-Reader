@@ -8,6 +8,7 @@ class AllArticles extends React.Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   async componentDidMount() {
@@ -27,7 +28,9 @@ class AllArticles extends React.Component {
     this.props.setArticle(this.props.articles[event.target.value]);
     this.props.history.push("/articles/view-article")
   }
-
+  handleDelete(event) {
+    event.preventDefault();
+  }
   render() {
     return (
       <div>
@@ -40,6 +43,9 @@ class AllArticles extends React.Component {
                   <h3>{article.title}</h3>
                   <button value={index} onClick={this.handleSubmit}>
                     View Article
+                  </button>
+                  <button value={index} onClick={this.handleDelete}>
+                    remove
                   </button>
                 </li>
               );
