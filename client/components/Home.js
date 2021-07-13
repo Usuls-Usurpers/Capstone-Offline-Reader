@@ -1,32 +1,32 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import URLForm from './URLForm'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import URLForm from './URLForm';
 
 /**
  * COMPONENT
  */
- class Home extends Component {
+class Home extends Component {
   render() {
-    const {username} = this.props
+    const { username } = this.props;
     return (
       <div>
         {this.props.isLoggedIn ? (
           <div>
             <h3>Welcome, {username}</h3>
-            < URLForm />
+            <URLForm />
           </div>
-        ):(
+        ) : (
           <h3>Welcome to Cache-22</h3>
         )}
       </div>
-    )
+    );
   }
 }
-const mapState = state => {
+const mapState = (state) => {
   return {
     username: state.auth.email,
     isLoggedIn: !!state.auth.uid,
-  }
-}
+  };
+};
 
-export default connect(mapState)(Home)
+export default connect(mapState)(Home);

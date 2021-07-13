@@ -7,9 +7,10 @@ const scraperObj = require('../puppeteer');
 
 const getAllArticles = async (req, res, next) => {
   try {
+    const userId = await firebase.auth().currentUser.uid;
     const articles = await db
       .collection('users')
-      .doc('t2D8ahpahoxhxE8xvOG4')
+      .doc(userId)
       .collection('Articles');
     const data = await articles.get();
     const articlesArray = [];
@@ -36,10 +37,10 @@ const getAllArticles = async (req, res, next) => {
 
 const getSingleArticle = async (req, res, next) => {
   try {
-    // const id = req.params.id;
+    const userId = await firebase.auth().currentUser.uid;
     const article = await db
       .collection('users')
-      .doc('t2D8ahpahoxhxE8xvOG4')
+      .doc(userId)
       .collection('Articles')
       .doc('c5HnOtaD45D8RmipTh9e');
     const data = await article.get();
@@ -55,7 +56,7 @@ const getSingleArticle = async (req, res, next) => {
 
 const addArticle = async (req, res, next) => {
   try {
-    const {url} = req.body;
+    const { url } = req.body;
     let resource;
     if (url.includes('medium')) {
       resource = scraperObj.medium;
@@ -65,14 +66,8 @@ const addArticle = async (req, res, next) => {
       resource = scraperObj.wikipedia;
     }
     const data = await resource(url);
-    await db
-      .collection('users')
-      .doc('t2D8ahpahoxhxE8xvOG4')
-      .collection('Articles')
-      .doc()
-      .set(data);
+    await db.collection('users').doc('').collection('Articles').doc().set(data);
     res.send(data);
-    // res.send('Record saved successfuly');
   } catch (error) {
     res.status(400).send(error.message);
   }
@@ -80,14 +75,13 @@ const addArticle = async (req, res, next) => {
 
 const deleteArticle = async (req, res, next) => {
   try {
-    // const id = req.params.id;
+    const userId = await firebase.auth().currentUser.uid;
     await db
       .collection('users')
-      .doc('t2D8ahpahoxhxE8xvOG4')
+      .doc(userId)
       .collection('Articles')
       .doc('U3mDGvfOyjiyqccyzzqa')
       .delete();
-    // res.send('Record deleted successfuly');
   } catch (error) {
     res.status(400).send(error.message);
   }

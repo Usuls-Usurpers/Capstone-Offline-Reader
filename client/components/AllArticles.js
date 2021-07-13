@@ -1,11 +1,14 @@
-import React from "react";
-import { connect } from "react-redux";
-import articlesReducer, { fetchArticles } from "../store/articles"
+import React from 'react';
+import { connect } from 'react-redux';
+import articlesReducer, { fetchArticles } from '../store/articles';
 
 class AllArticles extends React.Component {
   componentDidMount() {
-    this.props.fetchArticles();
+    if (this.props.isLoggedIn) {
+      this.props.fetchArticles();
+    }
   }
+
   render() {
     return (
       <div>
@@ -14,9 +17,7 @@ class AllArticles extends React.Component {
             {this.props.articles.map((article) => {
               return (
                 <li key={article.id} className="listItem">
-                  <h3>
-                    {article.title}
-                  </h3>
+                  <h3>{article.title}</h3>
                 </li>
               );
             })}
@@ -32,6 +33,7 @@ class AllArticles extends React.Component {
 const mapState = (state) => {
   return {
     articles: state.articles,
+    isLoggedIn: !!state.auth.uid,
   };
 };
 
