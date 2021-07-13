@@ -19,7 +19,6 @@ export const fetchUsers = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get("/api/users");
-      console.log("data", data);
       dispatch(setUsers(data));
     } catch (error) {
       console.error(error);
