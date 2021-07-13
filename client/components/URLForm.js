@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import addArticleByURL from '../store/articles'
+import {addArticleByURL} from '../store/articles'
 
 class URLForm extends Component {
     constructor (props){
@@ -19,6 +19,7 @@ class URLForm extends Component {
     async handleSubmit (event) {
         event.preventDefault()
         console.log(this.state.URL)
+        console.log('handlesubmit', this.props)
         await this.props.addArticleByURL(this.state.URL)
         this.setState({URL:''})
     }
@@ -37,8 +38,10 @@ class URLForm extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    addArticleByURL: (URL) => dispatch(addArticleByURL(URL, history))
-})
+const mapDispatchToProps = (dispatch, { history }) => {
+    return {
+        addArticleByURL: (URL) => dispatch(addArticleByURL(URL, history))
+    }
+}
 export default connect(null, mapDispatchToProps)(URLForm)
 
