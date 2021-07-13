@@ -13,15 +13,15 @@ class Navbar extends Component {
       {this.props.isLoggedIn ? (
       <div>
         <Link to="/home">home</Link>
-        <Link to="/users">users</Link>
-        <Link to="/articles">articles</Link>
+        {/* <Link to="/users">users</Link> */}
+        {/* <Link to="/articles">articles</Link> */}
         <Link to="/login" onClick={this.props.handleClick} id="logout">
         logout
         </Link>
         </div>) :
         (<div>
         <Link to="/home">home</Link>
-        <Link to="/users">users</Link>
+        {/* <Link to="/users">users</Link> */}
         <Link to="/articles">articles</Link>
         <Link to="/login">login</Link>
         <Link to="/signup">signup</Link>

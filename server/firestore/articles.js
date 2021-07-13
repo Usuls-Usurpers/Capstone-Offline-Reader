@@ -7,7 +7,6 @@ const scraperObj = require("../puppeteer");
 
 const getAllArticles = async (req, res, next) => {
   try {
-    // const { infoObj } = req.body
     console.log('req.proxy in allarticles =>', req.query)
     const userId = req.query.uid
     const articles = await db
