@@ -29,7 +29,6 @@ const getAllArticles = async (req, res, next) => {
         articlesArray.push(article);
       });
       res.send(articlesArray);
-      // res.send('Hello World!');
     }
   } catch (error) {
     res.status(400).send(error.message);
@@ -59,7 +58,6 @@ const getSingleArticle = async (req, res, next) => {
 
 const addArticle = async (req, res, next) => {
   try {
-    // console.log('req in addArticle', req)
     const { url, userId } = req.body;
     let resource;
     if (url.includes('medium')) {
@@ -77,7 +75,6 @@ const addArticle = async (req, res, next) => {
       .doc()
       .set(data);
     res.send(data);
-    // res.send('Record saved successfuly');
   } catch (error) {
     res.status(400).send(error.message);
   }
@@ -85,15 +82,12 @@ const addArticle = async (req, res, next) => {
 
 const deleteArticle = async (req, res, next) => {
   try {
-    // const id = req.params.id;
     const { userId, articleId } = req.body;
     await db
       .collection('users')
       .doc(userId)
       .collection('Articles')
-      .doc(articleId)
-      .delete();
-    // res.send('Record deleted successfuly');
+      .doc(articleId);
   } catch (error) {
     res.status(400).send(error.message);
   }

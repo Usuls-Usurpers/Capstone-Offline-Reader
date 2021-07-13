@@ -73,8 +73,6 @@ export const deleteArticleThunk = (infoObj, history) => {
           articleId: infoObj[1],
         },
       };
-      // const userId = infoObj[0];
-      // const articleId = infoObj[1];
       const { data } = await axios.delete(`/api/article`, config);
       dispatch(deleteArticle(data));
       history.push('/api/articles');
