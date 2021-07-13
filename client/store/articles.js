@@ -41,14 +41,13 @@ export const fetchArticles = (infoObj) => {
   };
 };
 
-export const addArticleByURL = (url, history) => {
+export const addArticleByURL = (infoObj, history) => {
   return async (dispatch) => {
     try {
-      const config = {
-        url: url
-      }
+      const userId = infoObj[0]
+      const url = infoObj[1]
       console.log('url in thunk', url)
-      const { data } = await axios.post(`/api/article`, config);
+      const { data } = await axios.post(`/api/article`, { userId, url});
       console.log("data", data);
       dispatch(addArticle(data));
     } catch (error) {

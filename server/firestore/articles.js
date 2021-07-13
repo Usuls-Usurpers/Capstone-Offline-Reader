@@ -5,15 +5,6 @@ const Article = require("../db/models/Article");
 const db = firebase.firestore();
 const scraperObj = require("../puppeteer");
 
-// const requireToken = async (req, res, next) => {
-//   try {
-//     const TOKEN = await firebase.auth().currentUser.getIdToken(true)
-      
-//   } catch (err) {
-
-//   }
-// }
-
 const getAllArticles = async (req, res, next) => {
   try {
     const userId = req.query.uid
@@ -68,7 +59,7 @@ const getSingleArticle = async (req, res, next) => {
 const addArticle = async (req, res, next) => {
   try {
     console.log('req in addArticle', req)
-    const {url} = req.body;
+    const { url, userId } = req.body;
     let resource;
     if (url.includes("medium")) {
       resource = scraperObj.medium;
@@ -80,7 +71,7 @@ const addArticle = async (req, res, next) => {
     const data = await resource(url);
     await db
       .collection("users")
-      .doc("t2D8ahpahoxhxE8xvOG4")
+      .doc(`${userId}`)
       .collection("Articles")
       .doc()
       .set(data);

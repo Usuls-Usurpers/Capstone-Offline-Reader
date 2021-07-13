@@ -20,7 +20,7 @@ class URLForm extends Component {
         event.preventDefault()
         console.log(this.state.URL)
         console.log('handlesubmit', this.props)
-        await this.props.addArticleByURL(this.state.URL)
+        await this.props.addArticleByURL([this.props.userId, this.state.URL])
         this.setState({URL:''})
     }
     render() {
@@ -37,11 +37,17 @@ class URLForm extends Component {
         )
     }
 }
+const mapState = (state) => {
+  return {
+    isLoggedIn: !!state.auth.uid,
+    userId: state.auth.uid,
+  };
+};
 
 const mapDispatchToProps = (dispatch, { history }) => {
     return {
-        addArticleByURL: (URL) => dispatch(addArticleByURL(URL, history))
+        addArticleByURL: (infoObj) => dispatch(addArticleByURL(infoObj, history))
     }
 }
-export default connect(null, mapDispatchToProps)(URLForm)
+export default connect(mapState, mapDispatchToProps)(URLForm)
 
