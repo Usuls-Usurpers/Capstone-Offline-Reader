@@ -1,6 +1,6 @@
 import React from "react";
-import { fetchSingleArticle } from "../store/singleArticle";
 import { connect } from "react-redux";
+import ReactHtmlParser from 'react-html-parser';
 //import { Link } from "react-router-dom";
 
 class SingleArticle extends React.Component {
@@ -22,7 +22,7 @@ class SingleArticle extends React.Component {
     return (
       <div>
         Hello article!
-        <div>{article.article}</div>
+        <div>{ReactHtmlParser(article.article)}</div>
       </div>
     );
   }
@@ -43,4 +43,3 @@ const mapState = (state) => {
 // };
 
 export default connect(mapState)(SingleArticle);
-]
