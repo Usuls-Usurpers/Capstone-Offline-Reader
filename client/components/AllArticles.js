@@ -26,7 +26,6 @@ class AllArticles extends React.Component {
     // console.dir(this.props.articles[event.target.value]);
     this.props.setArticle(this.props.articles[event.target.value]);
     this.props.history.push('/articles/view-article');
-
   }
 
   handleDelete(event) {

@@ -22,7 +22,8 @@ export const addArticle = (article) => {
   };
 };
 
-export const deleteArticle = (article) => {
+export const _deleteArticle = (article) => {
+  console.log('article in action>>>', article);
   return {
     type: DELETE_ARTICLE,
     article,
@@ -70,7 +71,7 @@ export const deleteArticleThunk = (infoObj) => {
         },
       };
       const { data } = await axios.delete(`/api/article`, config);
-      dispatch(deleteArticle(data));
+      dispatch(_deleteArticle(data));
     } catch (error) {
       console.log('error deleting product', error);
     }
@@ -85,10 +86,13 @@ export default function articlesReducer(articles = [], action) {
     case ADD_ARTICLE:
       return [...articles, action.article];
     case DELETE_ARTICLE:
-      return [
-        ...articles,
-        articles.filter((article) => article.id !== action.article),
-      ];
+      // console.log('action>>>', action);
+      // console.log('articles>>>', articles);
+      const result = articles.filter(
+        (article) => article.id !== action.article.id
+      );
+      // console.log('result>>>>', result);
+      return result;
     default:
       return articles;
   }

@@ -84,12 +84,19 @@ const addArticle = async (req, res, next) => {
 const deleteArticle = async (req, res, next) => {
   try {
     const { userId, articleId } = req.body;
+    const deletedArticle = await db
+      .collection('users')
+      .doc(userId)
+      .collection('Articles')
+      .doc(articleId);
     await db
       .collection('users')
       .doc(userId)
       .collection('Articles')
       .doc(articleId)
       .delete();
+    console.log('deletedArticle>>>', deletedArticle);
+    res.json(deletedArticle);
   } catch (error) {
     res.status(400).send(error.message);
   }
