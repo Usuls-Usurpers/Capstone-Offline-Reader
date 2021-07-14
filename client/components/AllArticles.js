@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import { fetchArticles } from "../store/articles";
-import { setArticle } from "../store/singleArticle";
+import React from 'react';
+import { connect } from 'react-redux';
+import { fetchArticles, deleteArticleThunk } from '../store/articles';
+import { setArticle } from '../store/singleArticle';
 
 class AllArticles extends React.Component {
   constructor(props) {
@@ -13,7 +13,6 @@ class AllArticles extends React.Component {
 
   async componentDidMount() {
     try {
-      console.log("this.props", this.props);
       await this.props.fetchArticles(this.props.userId);
     } catch (err) {
       console.log(err);
@@ -22,13 +21,23 @@ class AllArticles extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.dir(this.props.articles[event.target.value]);
+    // console.log('handle Submit was clicked!');
+    // console.log(event.target.value);
+    // console.dir(this.props.articles[event.target.value]);
     this.props.setArticle(this.props.articles[event.target.value]);
-    this.props.history.push("/articles/view-article");
+    this.props.history.push('/articles/view-article');
+
   }
+
   handleDelete(event) {
     event.preventDefault();
+    this.props.deleteArticle([
+      this.props.userId,
+      this.props.articles[event.target.value].id,
+    ]);
+    this.props.history.push('/articles');
   }
+
   render() {
     return (
       <div>
@@ -70,6 +79,7 @@ const mapDispatch = (dispatch) => {
   return {
     fetchArticles: (infoObj) => dispatch(fetchArticles(infoObj)),
     setArticle: (article) => dispatch(setArticle(article)),
+    deleteArticle: (infoObj) => dispatch(deleteArticleThunk(infoObj)),
   };
 };
 

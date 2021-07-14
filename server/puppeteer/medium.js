@@ -14,7 +14,7 @@ const mediumScraper = async (URL) => {
     () => document.querySelector("article").innerHTML
   );
   const title = await page.evaluate(
-    () => document.querySelector("div h1").innerHTML
+    () => document.querySelector('div h1').innerHTML
   );
   const cssSheet = await page.evaluate(() =>
     document.querySelector("#glyph_link")

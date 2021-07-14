@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import ReactHtmlParser from "react-html-parser";
 
+
 class SingleArticle extends React.Component {
   componentDidMount() {
     console.log("this.props in Single Article: ", this.props);
@@ -19,7 +20,7 @@ class SingleArticle extends React.Component {
 }
 
 const mapState = (state) => {
-  console.log("State in single article: ", state);
+  console.log('State in single article: ', state);
   return {
     article: state.article,
     //isLoggedIn: !!state.auth.id,

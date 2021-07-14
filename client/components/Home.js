@@ -16,7 +16,7 @@ class Home extends Component {
         {this.props.isLoggedIn ? (
           <div>
             <h3>Welcome, {name(username)}!</h3>
-            <URLForm />
+            <URLForm history={this.props.history} />
           </div>
         ) : (
           <h3>Welcome to Cache-22!</h3>
