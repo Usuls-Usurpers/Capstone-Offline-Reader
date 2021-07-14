@@ -31,14 +31,11 @@ class AllArticles extends React.Component {
 
   handleDelete(event) {
     event.preventDefault();
-    // console.log('PROPS>>>', this.props);
-    // console.log(event.target.value);
-    // console.log('USERID>>>>>', this.props.userId);
-    // console.log('articleid>>>', this.props.articles[event.target.value].id);
     this.props.deleteArticle([
       this.props.userId,
       this.props.articles[event.target.value].id,
     ]);
+    this.props.history.push('/articles');
   }
 
   render() {

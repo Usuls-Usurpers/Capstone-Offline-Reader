@@ -16,10 +16,11 @@ class URLForm extends Component {
       [event.target.name]: event.target.value,
     });
   }
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
-    await this.props.addArticleByURL([this.props.userId, this.state.URL]);
+    this.props.addArticleByURL([this.props.userId, this.state.URL]);
     this.setState({ URL: '' });
+    this.props.history.push('/articles');
   }
   render() {
     const { URL } = this.state;

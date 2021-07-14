@@ -87,7 +87,8 @@ const deleteArticle = async (req, res, next) => {
       .collection('users')
       .doc(userId)
       .collection('Articles')
-      .doc(articleId);
+      .doc(articleId)
+      .delete();
   } catch (error) {
     res.status(400).send(error.message);
   }

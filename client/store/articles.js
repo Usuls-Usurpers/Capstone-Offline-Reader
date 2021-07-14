@@ -64,7 +64,7 @@ export const addArticleByURL = (infoObj, history) => {
   };
 };
 
-export const deleteArticleThunk = (infoObj, history) => {
+export const deleteArticleThunk = (infoObj) => {
   return async (dispatch) => {
     try {
       const config = {
@@ -75,7 +75,6 @@ export const deleteArticleThunk = (infoObj, history) => {
       };
       const { data } = await axios.delete(`/api/article`, config);
       dispatch(deleteArticle(data));
-      history.push('/api/articles');
     } catch (error) {
       console.log('error deleting product', error);
     }
@@ -90,7 +89,10 @@ export default function articlesReducer(articles = [], action) {
     case ADD_ARTICLE:
       return [...articles, action.article];
     case DELETE_ARTICLE:
-      return [...articles.filter((article) => article.id !== action.article)];
+      return [
+        ...articles,
+        articles.filter((article) => article.id !== action.article),
+      ];
     default:
       return articles;
   }
