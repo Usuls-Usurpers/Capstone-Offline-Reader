@@ -24,7 +24,8 @@ const getAllArticles = async (req, res, next) => {
           doc.data().url,
           doc.data().title,
           doc.data().addedAt,
-          doc.data().isComplete
+          doc.data().isComplete,
+          doc.data().cssSheet
         );
         articlesArray.push(article);
       });

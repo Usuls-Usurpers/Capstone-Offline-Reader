@@ -1,11 +1,13 @@
 import React from "react";
 import Routes from "./Routes";
 import Navbar from "./components/Navbar";
+import Banner from "./components/Banner";
 
 const App = () => {
   return (
     <div>
-      <Navbar/>
+      <Banner />
+      <Navbar />
       <Routes />
     </div>
   );

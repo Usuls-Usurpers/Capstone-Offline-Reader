@@ -13,7 +13,6 @@ class AllArticles extends React.Component {
 
   async componentDidMount() {
     try {
-      // console.log('articles component userid', this.props.userId);
       await this.props.fetchArticles(this.props.userId);
     } catch (err) {
       console.log(err);
@@ -27,6 +26,7 @@ class AllArticles extends React.Component {
     // console.dir(this.props.articles[event.target.value]);
     this.props.setArticle(this.props.articles[event.target.value]);
     this.props.history.push('/articles/view-article');
+
   }
 
   handleDelete(event) {

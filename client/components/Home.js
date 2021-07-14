@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import URLForm from './URLForm';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import URLForm from "./URLForm";
 
-/**
- * COMPONENT
- */
+const name = (username) => {
+  let email = username.split("@")[0];
+  let firstLetter = username[0].toUpperCase();
+  return firstLetter.concat(email.slice(1));
+};
+
 class Home extends Component {
   render() {
     const { username } = this.props;
     return (
-      <div>
+      <div id="welcome">
         {this.props.isLoggedIn ? (
           <div>
-            <h3>Welcome, {username}</h3>
+            <h3>Welcome, {name(username)}!</h3>
             <URLForm history={this.props.history} />
           </div>
         ) : (
-          <h3>Welcome to Cache-22</h3>
+          <h3>Welcome to Cache-22!</h3>
         )}
       </div>
     );
