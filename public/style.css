@@ -1,9 +1,22 @@
+/* CSS HEX 
+--blue-sapphire: #10576aff;
+--pale-pink: #ffd6dcff;
+--verdigris: #75b9bdff;
+--cordovan: #904e55ff;
+--antique-ruby: #8b2635ff;
+font-family: 'Poppins', sans-serif;
+*/
+
 body {
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
+  margin: 70px 80px 150px 80px;
+  background-color: #f9f9fa;
 }
 
 a {
   text-decoration: none;
+  font-weight: 600;
+  color: #8b2635;
 }
 
 label {

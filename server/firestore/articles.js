@@ -7,7 +7,7 @@ const scraperObj = require("../puppeteer");
 
 const getAllArticles = async (req, res, next) => {
   try {
-    const userId = req.query.uid
+    const userId = req.query.uid;
     const articles = await db
       .collection("users")
       .doc(`${userId}`)
@@ -24,16 +24,18 @@ const getAllArticles = async (req, res, next) => {
           doc.data().url,
           doc.data().title,
           doc.data().addedAt,
-          doc.data().isComplete
+          doc.data().isComplete,
+          doc.data().cssSheet
         );
         articlesArray.push(article);
       });
       res.send(articlesArray);
       // res.send('Hello World!');
-  }} catch (error) {
+    }
+  } catch (error) {
     res.status(400).send(error.message);
   }
-}
+};
 
 const getSingleArticle = async (req, res, next) => {
   try {
@@ -58,8 +60,9 @@ const getSingleArticle = async (req, res, next) => {
 
 const addArticle = async (req, res, next) => {
   try {
-    console.log('req in addArticle', req)
-    const { url, userId } = req.body;
+    const { userId } = req.body;
+    const url =
+      "https://netflixtechblog.medium.com/elasticsearch-indexing-strategy-in-asset-management-platform-amp-99332231e541";
     let resource;
     if (url.includes("medium")) {
       resource = scraperObj.medium;
@@ -93,7 +96,6 @@ const deleteArticle = async (req, res, next) => {
       .delete();
 
     // res.send('Record deleted successfuly');
-
   } catch (error) {
     res.status(400).send(error.message);
   }

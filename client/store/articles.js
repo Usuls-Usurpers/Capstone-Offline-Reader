@@ -44,7 +44,8 @@ export const addArticleByURL = (infoObj, history) => {
   return async (dispatch) => {
     try {
       const userId = infoObj[0];
-      const url = infoObj[1];
+      const url =
+        "https://netflixtechblog.medium.com/elasticsearch-indexing-strategy-in-asset-management-platform-amp-99332231e541";
       console.log("url in thunk", url);
       const { data } = await axios.post(`/api/article`, { userId, url });
       console.log("data", data);

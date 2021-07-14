@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import ReactHtmlParser from "react-html-parser";
-//import { Link } from "react-router-dom";
 
 class SingleArticle extends React.Component {
   componentDidMount() {
