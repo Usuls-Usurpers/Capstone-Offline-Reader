@@ -18,8 +18,8 @@ const setAuth = auth => ({type: SET_AUTH, auth})
 
 export const authenticate = (infoObj, history) => async dispatch => {
   try {
-    const [ email, password, method ] = infoObj
-    const res = await axios.post(`/auth/${method}`, {email, password})
+    const [ email, password, method, firstName, lastName ] = infoObj
+    const res = await axios.post(`/auth/${method}`, {email, password, firstName, lastName})
     dispatch(setAuth(res.data))
     history.push('/home')
   } catch (authError) {

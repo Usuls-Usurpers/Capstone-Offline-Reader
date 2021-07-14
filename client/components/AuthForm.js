@@ -7,9 +7,11 @@ import {authenticate} from '../store/auth'
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-
+  const login = displayName === "Login"
   return (
     <div>
+    {login ? (
+     <div>
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email">
@@ -28,6 +30,41 @@ const AuthForm = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
+    </div>
+    ): (
+      <div>
+      <form onSubmit={handleSubmit} name={name}>
+        <div>
+          <label htmlFor="firstName">
+            <small>first name</small>
+          </label>
+          <input name="firstName" type="firstName" />
+        </div>
+        <div>
+          <label htmlFor="lastName">
+            <small>first name</small>
+          </label>
+          <input name="lastName" type="lastName" />
+        </div>
+        <div>
+          <label htmlFor="email">
+            <small>email</small>
+          </label>
+          <input name="email" type="text" />
+        </div>
+        <div>
+          <label htmlFor="password">
+            <small>password</small>
+          </label>
+          <input name="password" type="password" />
+        </div>
+        <div>
+          <button type="submit">{displayName}</button>
+        </div>
+        {error && error.response && <div> {error.response.data} </div>}
+      </form>
+    </div>
+    )}
     </div>
   )
 }
@@ -60,9 +97,11 @@ const mapDispatch = (dispatch, { history }) => {
     handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
+      const firstName = evt.target.firstName.value
+      const lastName = evt.target.lastName.value
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(authenticate([email, password, formName], history))
+      dispatch(authenticate([email, password, formName, firstName, lastName], history))
     }
   }
 }
