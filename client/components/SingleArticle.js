@@ -12,7 +12,6 @@ class SingleArticle extends React.Component {
 
     return (
       <div>
-        Hello article!
         <div>{ReactHtmlParser(article.article)}</div>
       </div>
     );

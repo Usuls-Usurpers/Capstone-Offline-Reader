@@ -12,7 +12,7 @@ class Home extends Component {
   render() {
     const { username } = this.props;
     return (
-      <div>
+      <div id="welcome">
         {this.props.isLoggedIn ? (
           <div>
             <h3>Welcome, {name(username)}!</h3>
