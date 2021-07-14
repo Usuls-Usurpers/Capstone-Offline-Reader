@@ -14,10 +14,7 @@ const mediumScraper = async (URL) => {
     () => document.querySelector('article').innerHTML
   );
   const title = await page.evaluate(
-    () =>
-      // document.querySelector('h1.fm.dk.fn.ba.cz.fo.fp.fq.fr.fs').innerHTML
-      // document.querySelector('title').innerHTML
-      document.querySelector('div h1').innerHTML
+    () => document.querySelector('div h1').innerHTML
   );
   const date = new Date().toDateString();
   const data = {

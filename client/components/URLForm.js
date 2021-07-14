@@ -43,9 +43,9 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, { history }) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    addArticleByURL: (infoObj) => dispatch(addArticleByURL(infoObj, history)),
+    addArticleByURL: (infoObj) => dispatch(addArticleByURL(infoObj)),
   };
 };
 export default connect(mapState, mapDispatchToProps)(URLForm);

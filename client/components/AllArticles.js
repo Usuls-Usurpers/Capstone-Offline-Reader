@@ -13,7 +13,7 @@ class AllArticles extends React.Component {
 
   async componentDidMount() {
     try {
-      console.log('articles component userid', this.props.userId);
+      // console.log('articles component userid', this.props.userId);
       await this.props.fetchArticles(this.props.userId);
     } catch (err) {
       console.log(err);
@@ -22,9 +22,9 @@ class AllArticles extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('handle Submit was clicked!');
-    console.log(event.target.value);
-    console.dir(this.props.articles[event.target.value]);
+    // console.log('handle Submit was clicked!');
+    // console.log(event.target.value);
+    // console.dir(this.props.articles[event.target.value]);
     this.props.setArticle(this.props.articles[event.target.value]);
     this.props.history.push('/articles/view-article');
   }

@@ -16,7 +16,6 @@ export const setArticles = (articles) => {
 };
 
 export const addArticle = (article) => {
-  console.log('article in creator', article);
   return {
     type: ADD_ARTICLE,
     article,
@@ -41,7 +40,6 @@ export const fetchArticles = (infoObj) => {
         },
       };
       const { data } = await axios.get(`/api/articles/`, config);
-      console.log('data in fetchArticles thunk', data);
       dispatch(setArticles(data));
     } catch (error) {
       console.error(error);
@@ -49,14 +47,12 @@ export const fetchArticles = (infoObj) => {
   };
 };
 
-export const addArticleByURL = (infoObj, history) => {
+export const addArticleByURL = (infoObj) => {
   return async (dispatch) => {
     try {
       const userId = infoObj[0];
       const url = infoObj[1];
-      console.log('url in thunk', url);
       const { data } = await axios.post(`/api/article`, { userId, url });
-      console.log('data', data);
       dispatch(addArticle(data));
     } catch (error) {
       console.error(error);
