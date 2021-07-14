@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
 //import { Link } from "react-router-dom";
 
@@ -29,7 +29,7 @@ class SingleArticle extends React.Component {
 }
 
 const mapState = (state) => {
-  console.log("State in single article: ", state);
+  console.log('State in single article: ', state);
   return {
     article: state.article,
     //isLoggedIn: !!state.auth.id,
