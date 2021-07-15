@@ -29,6 +29,16 @@ router.post('/login', async (req, res, next) => {
     const { email, password } = req.body
     const userCred = await auth.signInWithEmailAndPassword(email, password)
     const user = userCred.user
+    const userId = user.uid
+    let result = await db
+      .collection('users')
+      .doc(`${userId}`)
+    result = await result.get()
+    const {firstName, lastName} = result.data()
+    const display = `${firstName} ${lastName}`
+    await user.updateProfile({
+      displayName: display
+    })
     res.send(user);
   } catch (err) {
     next(err)
@@ -38,12 +48,16 @@ router.post('/login', async (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   try {
     const { email, password, firstName, lastName } = req.body
+    const display = `${firstName} ${lastName}`
     const userCred = await auth.createUserWithEmailAndPassword(email, password)
-    const user = userCred.user
-    await db.collection('users').doc(user.uid).set({
+    const newUser = userCred.user
+    await newUser.updateProfile({
+      displayName: display
+    })
+    await db.collection('users').doc(newUser.uid).set({
         email, firstName, lastName
     });
-    res.send(user)
+    res.send(newUser)
   } catch (err) {
       next(err)
   }

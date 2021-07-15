@@ -42,7 +42,7 @@ const AuthForm = props => {
         </div>
         <div>
           <label htmlFor="lastName">
-            <small>first name</small>
+            <small>last name</small>
           </label>
           <input name="lastName" type="lastName" />
         </div>
