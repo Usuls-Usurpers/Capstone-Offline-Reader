@@ -23,7 +23,6 @@ export const addArticle = (article) => {
 };
 
 export const _deleteArticle = (article) => {
-  console.log('article in action>>>', article);
   return {
     type: DELETE_ARTICLE,
     article,
@@ -86,13 +85,7 @@ export default function articlesReducer(articles = [], action) {
     case ADD_ARTICLE:
       return [...articles, action.article];
     case DELETE_ARTICLE:
-      // console.log('action>>>', action);
-      // console.log('articles>>>', articles);
-      const result = articles.filter(
-        (article) => article.id !== action.article.id
-      );
-      // console.log('result>>>>', result);
-      return result;
+      return articles.filter((article) => article.url !== action.article.url);
     default:
       return articles;
   }
