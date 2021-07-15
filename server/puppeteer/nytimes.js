@@ -15,7 +15,13 @@ const nytimesScraper = async (URL) => {
   );
 
   const title = await page.evaluate(
-    () => document.querySelector('h1').innerHTML
+    () =>
+      // document.querySelector('h1').innerHTML
+      document.querySelector('title').textContent
+  );
+
+  const displayImage = await page.evaluate(
+    () => document.querySelector('meta[property="og:image"][content]').content
   );
 
   const cssSheet = await page.evaluate(() => {
@@ -39,6 +45,7 @@ const nytimesScraper = async (URL) => {
     article: article,
     url: URL,
     title: title,
+    displayImage: displayImage,
     addedAt: date,
     isComplete: false,
     cssSheet: cssSheet,

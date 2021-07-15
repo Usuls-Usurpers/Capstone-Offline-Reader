@@ -6,7 +6,8 @@ const mediumScraper = async (URL) => {
 
   const page = await browser.newPage();
 
-  await page.goto(URL, { waitUntil: 'networkidle2' });
+  //waitUntil: 'networkidle2'
+  await page.goto(URL, { waitUntil: 'domcontentloaded' });
 
   await page.waitForSelector('article');
 
@@ -16,7 +17,13 @@ const mediumScraper = async (URL) => {
   );
 
   const title = await page.evaluate(
-    () => document.querySelector('div h1').innerHTML
+    () =>
+      // document.querySelector('div h1').innerHTML
+      document.querySelector('title').textContent
+  );
+
+  const displayImage = await page.evaluate(
+    () => document.querySelector('meta[property="og:image"][content]').content
   );
 
   const cssSheet = await page.evaluate(() => {
@@ -28,8 +35,6 @@ const mediumScraper = async (URL) => {
     });
     return links;
   });
-
-  console.log('cssSheet>>>>>', cssSheet);
 
   const cssStyle = await page.evaluate(() => {
     const nodeList = Array.from(document.querySelectorAll('style'));
@@ -43,6 +48,7 @@ const mediumScraper = async (URL) => {
     article: article,
     url: URL,
     title: title,
+    displayImage: displayImage,
     addedAt: date,
     isComplete: false,
     cssSheet: cssSheet,

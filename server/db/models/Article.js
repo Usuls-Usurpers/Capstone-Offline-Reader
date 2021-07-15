@@ -4,6 +4,7 @@ class Article {
     article,
     url,
     title,
+    displayImage,
     addedAt,
     isComplete,
     cssSheet,
@@ -13,6 +14,7 @@ class Article {
     this.article = article;
     this.url = url;
     this.title = title;
+    this.displayImage = displayImage;
     this.addedAt = addedAt;
     this.isComplete = isComplete;
     this.cssSheet = cssSheet;

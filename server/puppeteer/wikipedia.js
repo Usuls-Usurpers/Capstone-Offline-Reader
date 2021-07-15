@@ -16,11 +16,13 @@ const wikipediaScraper = async (URL) => {
   );
 
   const title = await page.evaluate(
-    () => document.querySelector('#firstHeading').innerHTML
+    () =>
+      // document.querySelector('#firstHeading').innerHTML
+      document.querySelector('title').textContent
   );
 
-  const content = await page.evaluate(
-    () => document.querySelector('#bodyContent').innerHTML
+  const displayImage = await page.evaluate(
+    () => document.querySelector('meta[property="og:image"][content]').content
   );
 
   const cssSheet = await page.evaluate(() => {
@@ -45,6 +47,7 @@ const wikipediaScraper = async (URL) => {
     article: article,
     url: URL,
     title: title,
+    displayImage: displayImage,
     addedAt: date,
     isComplete: false,
     cssSheet: cssSheet,

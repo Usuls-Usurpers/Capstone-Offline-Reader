@@ -47,6 +47,7 @@ class AllArticles extends React.Component {
                 return (
                   <li key={article.id} className="article-items">
                     <h3>{article.title}</h3>
+                    <img src={article.displayImage} />
                     <button value={index} onClick={this.handleSubmit}>
                       View Article
                     </button>
