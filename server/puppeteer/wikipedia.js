@@ -20,6 +20,7 @@ const wikipediaScraper = async (URL) => {
   const content = await page.evaluate(
     () => document.querySelector('#bodyContent').innerHTML
   );
+
   const cssSheet = await page.evaluate(
     () => document.querySelector('link[rel=stylesheet]').href
   );

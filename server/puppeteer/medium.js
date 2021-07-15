@@ -13,16 +13,19 @@ const mediumScraper = async (URL) => {
   const article = await page.evaluate(
     () => document.querySelector('article').innerHTML
   );
+
   const title = await page.evaluate(
     () => document.querySelector('div h1').innerHTML
   );
+
   const cssSheet = await page.evaluate(
     () =>
       // document.querySelector("#glyph_link")
       document.querySelector('link[rel=stylesheet]').href
   );
-  console.log('>>>css>>>', cssSheet);
+
   const date = new Date().toDateString();
+
   const data = {
     article: article,
     url: URL,

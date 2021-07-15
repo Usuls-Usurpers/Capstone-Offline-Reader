@@ -9,7 +9,6 @@ class SingleArticle extends React.Component {
 
   render() {
     const article = this.props.article || {};
-    console.log('PROPS>>>', this.props);
     return (
       <div>
         <link rel="stylesheet" type="text/css" href={article.cssSheet} />
