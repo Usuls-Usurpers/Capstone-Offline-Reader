@@ -10,7 +10,9 @@ const wikipediaScraper = async (URL) => {
   await page.waitForSelector('#content');
 
   const article = await page.evaluate(
-    () => document.querySelector('#content').innerHTML
+    () =>
+      // document.querySelector('#content').innerHTML
+      document.querySelector('body').innerHTML
   );
 
   const title = await page.evaluate(
@@ -21,9 +23,22 @@ const wikipediaScraper = async (URL) => {
     () => document.querySelector('#bodyContent').innerHTML
   );
 
-  const cssSheet = await page.evaluate(
-    () => document.querySelector('link[rel=stylesheet]').href
-  );
+  const cssSheet = await page.evaluate(() => {
+    const nodeList = Array.from(
+      document.querySelectorAll('head > link[rel="stylesheet"]')
+    );
+    const links = nodeList.map((node) => {
+      return node.href;
+    });
+    return links;
+  });
+
+  const cssStyle = await page.evaluate(() => {
+    const nodeList = Array.from(document.querySelectorAll('style'));
+    const styles = nodeList.map((node) => node.innerHTML);
+    return styles;
+  });
+
   const date = new Date().toDateString();
 
   const data = {
@@ -33,6 +48,7 @@ const wikipediaScraper = async (URL) => {
     addedAt: date,
     isComplete: false,
     cssSheet: cssSheet,
+    cssStyle: cssStyle,
   };
 
   await browser.close();

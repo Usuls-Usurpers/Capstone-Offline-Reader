@@ -12,6 +12,7 @@ const mediumScraper = async (URL) => {
 
   const article = await page.evaluate(
     () => document.querySelector('article').innerHTML
+    // document.querySelector('body').innerHTML
   );
 
   const title = await page.evaluate(
