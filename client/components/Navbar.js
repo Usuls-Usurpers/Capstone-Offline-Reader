@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store/auth'
-// import {Login, Signup} from './components/AuthForm'
+import {logout, me} from '../store/auth'
 
 class Navbar extends Component {
   render() {

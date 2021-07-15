@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../history'
 // const TOKEN = 'token'
 
 /**
@@ -16,6 +15,16 @@ const setAuth = auth => ({type: SET_AUTH, auth})
  * THUNK CREATORS
  */
 
+export const me = () => async dispatch => {
+  try {
+    const res = await axios.get('/auth/me')
+    // console.log('res>>>', res)
+    dispatch(setAuth(res.data))
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const authenticate = (infoObj, history) => async dispatch => {
   try {
     const [ email, password, method, firstName, lastName ] = infoObj
@@ -29,9 +38,10 @@ export const authenticate = (infoObj, history) => async dispatch => {
 
 export const logout = (history) => async dispatch => {
   try {
-  const res = await axios.get('/auth/logout')
-  dispatch({type: SET_AUTH, auth: {}})
-  history.push('/login')
+    const res = await axios.get('/auth/logout')
+    dispatch({type: SET_AUTH, auth: {}})
+    console.log('history in logout>>', history)
+    history.push('/login')
   } catch (error) {
     console.log(error)
   }

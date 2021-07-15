@@ -1,5 +1,5 @@
-// const firebase = require('../db/db');
-const firebase = require("firebase")
+const firebase = require('../db/db');
+// const firebase = require("firebase")
 const express = require("express");
 const router = express.Router();
 const db = firebase.firestore();
@@ -7,12 +7,22 @@ const db = firebase.firestore();
 let auth = firebase.auth()
 module.exports = router;
 
-// if (typeof window !== 'undefined') {
-//   var orig = firebase.INTERNAL.node
-//   delete firebase.INTERNAL.node
-//   auth = firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-//   firebase.INTERNAL.node = orig
-// }
+router.get('/me', async (req, res, next) => {
+  try {
+    // console.log('req in me route>>>', req)
+    let currentUser;
+    await auth.onAuthStateChanged((user) => {
+      if (user) {
+        // console.log('user>>>>', user)
+        currentUser = user
+        // console.log('currentUser>>>', currentUser)
+      }
+    })
+    res.json(currentUser)
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.post('/login', async (req, res, next) => {
   try {

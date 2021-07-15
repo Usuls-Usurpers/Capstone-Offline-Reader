@@ -92,7 +92,19 @@ const mapSignup = state => {
   }
 }
 
-const mapDispatch = (dispatch, { history }) => {
+const mapLoginDispatch = (dispatch, { history }) => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      const formName = evt.target.name
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+      dispatch(authenticate([email, password, formName], history))
+    }
+  }
+}
+
+const mapSignupDispatch = (dispatch, { history }) => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
@@ -106,5 +118,5 @@ const mapDispatch = (dispatch, { history }) => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Login = connect(mapLogin, mapLoginDispatch)(AuthForm)
+export const Signup = connect(mapSignup, mapSignupDispatch)(AuthForm)
