@@ -21,6 +21,9 @@ const wikipediaScraper = async (URL) => {
     () => document.querySelector('#bodyContent').innerHTML
   );
 
+  const cssSheet = await page.evaluate(
+    () => document.querySelector('link[rel=stylesheet]').href
+  );
   const date = new Date().toDateString();
 
   const data = {
@@ -29,6 +32,7 @@ const wikipediaScraper = async (URL) => {
     title: title,
     addedAt: date,
     isComplete: false,
+    cssSheet: cssSheet,
   };
 
   await browser.close();

@@ -1,18 +1,17 @@
-import React from "react";
-import { connect } from "react-redux";
-import ReactHtmlParser from "react-html-parser";
-
+import React from 'react';
+import { connect } from 'react-redux';
+import ReactHtmlParser from 'react-html-parser';
 
 class SingleArticle extends React.Component {
   componentDidMount() {
-    console.log("this.props in Single Article: ", this.props);
+    console.log('this.props in Single Article: ', this.props);
   }
 
   render() {
     const article = this.props.article || {};
-
     return (
       <div>
+        <link rel="stylesheet" type="text/css" href={article.cssSheet} />
         <div>{ReactHtmlParser(article.article)}</div>
       </div>
     );
