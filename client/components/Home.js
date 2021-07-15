@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import URLForm from "./URLForm";
 
-// const name = (username) => {
-//   let email = username.split("@")[0];
-//   let firstLetter = username[0].toUpperCase();
-//   return firstLetter.concat(email.slice(1));
-// };
-
 class Home extends Component {
   render() {
     const { name } = this.props;

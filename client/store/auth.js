@@ -17,7 +17,6 @@ const setAuth = auth => ({type: SET_AUTH, auth})
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    // console.log('res>>>', res)
     dispatch(setAuth(res.data))
   } catch (err) {
     next(err)

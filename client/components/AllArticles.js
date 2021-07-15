@@ -38,12 +38,13 @@ class AllArticles extends React.Component {
   }
 
   render() {
+    const { articles } = this.props || []
     return (
       <div>
-        {this.props.isLoggedIn ? (
+        {this.props.isLoggedIn && articles.length > 0  ? (
           <div>
             <ul className="listAll">
-              {this.props.articles.map((article, index) => {
+              {articles.map((article, index) => {
                 return (
                   <li key={article.id} className="article-items">
                     <h3>{article.title}</h3>
@@ -59,7 +60,7 @@ class AllArticles extends React.Component {
             </ul>
           </div>
         ) : (
-          <h1>nothing here!</h1>
+          <h1>loading...</h1>
         )}
       </div>
     );
