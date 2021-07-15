@@ -9,13 +9,10 @@ module.exports = router;
 
 router.get('/me', async (req, res, next) => {
   try {
-    // console.log('req in me route>>>', req)
     let currentUser;
     await auth.onAuthStateChanged((user) => {
       if (user) {
-        // console.log('user>>>>', user)
         currentUser = user
-        // console.log('currentUser>>>', currentUser)
       }
     })
     res.json(currentUser)

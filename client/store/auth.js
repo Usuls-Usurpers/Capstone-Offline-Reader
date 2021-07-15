@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 /**
  * ACTION TYPES
  */
@@ -34,7 +35,7 @@ export const authenticate = (infoObj, history) => async dispatch => {
   }
 }
 
-export const logout = (history) => async dispatch => {
+export const logout = () => async dispatch => {
   try {
     const res = await axios.get('/auth/logout')
     dispatch({type: SET_AUTH, auth: {}})

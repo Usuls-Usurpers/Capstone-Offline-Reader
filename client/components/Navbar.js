@@ -34,9 +34,9 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch, { history }) => ({
+const mapDispatch = (dispatch) => ({
   handleClick() {
-    dispatch(logout(history));
+    dispatch(logout());
   },
 });
 
