@@ -18,11 +18,23 @@ const mediumScraper = async (URL) => {
     () => document.querySelector('div h1').innerHTML
   );
 
-  const cssSheet = await page.evaluate(
-    () =>
-      // document.querySelector("#glyph_link")
-      document.querySelector('link[rel=stylesheet]').href
-  );
+  const cssSheet = await page.evaluate(() => {
+    const nodeList = Array.from(
+      document.querySelectorAll('head > link[rel="stylesheet"]')
+    );
+    const links = nodeList.map((node) => {
+      return node.href;
+    });
+    return links;
+  });
+
+  console.log('cssSheet>>>>>', cssSheet);
+
+  const cssStyle = await page.evaluate(() => {
+    const nodeList = Array.from(document.querySelectorAll('style'));
+    const styles = nodeList.map((node) => node.innerHTML);
+    return styles;
+  });
 
   const date = new Date().toDateString();
 
@@ -33,6 +45,7 @@ const mediumScraper = async (URL) => {
     addedAt: date,
     isComplete: false,
     cssSheet: cssSheet,
+    cssStyle: cssStyle,
   };
   await browser.close();
   return data;
