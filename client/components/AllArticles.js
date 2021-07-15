@@ -59,7 +59,7 @@ class AllArticles extends React.Component {
             </ul>
           </div>
         ) : (
-          <h1>loading...</h1>
+          <h1>nothing here!</h1>
         )}
       </div>
     );
