@@ -22,7 +22,7 @@ export const addArticle = (article) => {
   };
 };
 
-export const deleteArticle = (article) => {
+export const _deleteArticle = (article) => {
   return {
     type: DELETE_ARTICLE,
     article,
@@ -70,7 +70,7 @@ export const deleteArticleThunk = (infoObj) => {
         },
       };
       const { data } = await axios.delete(`/api/article`, config);
-      dispatch(deleteArticle(data));
+      dispatch(_deleteArticle(data));
     } catch (error) {
       console.log('error deleting product', error);
     }
@@ -85,10 +85,7 @@ export default function articlesReducer(articles = [], action) {
     case ADD_ARTICLE:
       return [...articles, action.article];
     case DELETE_ARTICLE:
-      return [
-        ...articles,
-        articles.filter((article) => article.id !== action.article),
-      ];
+      return articles.filter((article) => article.url !== action.article.url);
     default:
       return articles;
   }
