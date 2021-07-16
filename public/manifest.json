@@ -1,0 +1,25 @@
+{
+  "name": "Cache-22",
+  "short_name": "Cache-22",
+  "description": "An offline reader app",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#10576a",
+  "background_color": "#75b9bd",
+  "icons": [
+    {
+      "src": "iconsFolder/manifest-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "iconsFolder/manifest-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

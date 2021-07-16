@@ -1,7 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { fetchArticles, deleteArticleThunk } from '../store/articles';
-import { setArticle } from '../store/singleArticle';
+import React from "react";
+import { connect } from "react-redux";
+import { fetchArticles, deleteArticleThunk } from "../store/articles";
+import { setArticle } from "../store/singleArticle";
 
 class AllArticles extends React.Component {
   constructor(props) {
@@ -21,11 +21,8 @@ class AllArticles extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // console.log('handle Submit was clicked!');
-    // console.log(event.target.value);
-    // console.dir(this.props.articles[event.target.value]);
     this.props.setArticle(this.props.articles[event.target.value]);
-    this.props.history.push('/articles/view-article');
+    this.props.history.push("/articles/view-article");
   }
 
   handleDelete(event) {
@@ -34,30 +31,30 @@ class AllArticles extends React.Component {
       this.props.userId,
       this.props.articles[event.target.value].id,
     ]);
-    this.props.history.push('/articles');
+    this.props.history.push("/articles");
   }
 
   render() {
     return (
       <div>
         {this.props.isLoggedIn ? (
-          <div>
-            <ul className="listAll">
-              {this.props.articles.map((article, index) => {
-                return (
-                  <li key={article.id} className="article-items">
-                    <h3>{article.title}</h3>
-                    <img src={article.displayImage} />
+          <div className="all-articles">
+            {this.props.articles.map((article, index) => {
+              return (
+                <div key={article.id} className="article-items">
+                  <h3>{article.title}</h3>
+                  <img src={article.displayImage} />
+                  <div id="buttons-all-articles">
                     <button value={index} onClick={this.handleSubmit}>
                       View Article
                     </button>
                     <button value={index} onClick={this.handleDelete}>
-                      remove
+                      Remove
                     </button>
-                  </li>
-                );
-              })}
-            </ul>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         ) : (
           <h1>nothing here!</h1>
