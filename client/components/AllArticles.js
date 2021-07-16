@@ -19,6 +19,12 @@ class AllArticles extends React.Component {
     }
   }
 
+  async componentDidUpdate(prevProps) {
+      if (prevProps.userId !== this.props.userId) {
+          await this.props.fetchArticles(this.props.userId);
+      }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     this.props.setArticle(this.props.articles[event.target.value]);
