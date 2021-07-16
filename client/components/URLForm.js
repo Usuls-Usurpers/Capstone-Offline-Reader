@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addArticleByURL } from '../store/articles';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addArticleByURL } from "../store/articles";
 
 class URLForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      URL: '',
+      URL: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,8 +19,8 @@ class URLForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.addArticleByURL([this.props.userId, this.state.URL]);
-    this.setState({ URL: '' });
-    this.props.history.push('/articles');
+    this.setState({ URL: "" });
+    this.props.history.push("/articles");
   }
   render() {
     const { URL } = this.state;
@@ -30,7 +30,7 @@ class URLForm extends Component {
         <form className="add-form" onSubmit={this.handleSubmit}>
           <label htmlFor="URL">URL</label>
           <input name="URL" onChange={this.handleChange} value={URL} />
-          <button type="submit">Submit</button>
+          <button type="submit">Add</button>
         </form>
       </div>
     );
