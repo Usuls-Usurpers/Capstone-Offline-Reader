@@ -1,42 +1,61 @@
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
 
-const wikipediaScraper = async (URL) => {
-  const browser = await puppeteer.launch();
+// const wikipediaScraper = async (URL) => {
+//   const browser = await puppeteer.launch();
 
-  const page = await browser.newPage();
+//   const page = await browser.newPage();
 
-  await page.goto(URL, { waitUntil: 'networkidle2' });
+//   await page.goto(URL, { waitUntil: 'networkidle2' });
 
-  await page.waitForSelector('#content');
+//   await page.waitForSelector('body');
 
-  const article = await page.evaluate(
-    () => document.querySelector('#content').innerHTML
-  );
+//   const article = await page.evaluate(
+//     () =>
+//       // document.querySelector('#content').innerHTML
+//       document.querySelector('body').innerHTML
+//   );
 
-  const title = await page.evaluate(
-    () => document.querySelector('#firstHeading').innerHTML
-  );
+//   const title = await page.evaluate(
+//     () =>
+//       // document.querySelector('#firstHeading').innerHTML
+//       document.querySelector('title').textContent
+//   );
 
-  const content = await page.evaluate(
-    () => document.querySelector('#bodyContent').innerHTML
-  );
+//   const displayImage = await page.evaluate(
+//     () => document.querySelector('meta[property="og:image"][content]').content
+//   );
 
-  const cssSheet = await page.evaluate(
-    () => document.querySelector('link[rel=stylesheet]').href
-  );
-  const date = new Date().toDateString();
+//   const cssSheet = await page.evaluate(() => {
+//     const nodeList = Array.from(
+//       document.querySelectorAll('head > link[rel="stylesheet"]')
+//     );
+//     const links = nodeList.map((node) => {
+//       return node.href;
+//     });
+//     return links;
+//   });
 
-  const data = {
-    article: article,
-    url: URL,
-    title: title,
-    addedAt: date,
-    isComplete: false,
-    cssSheet: cssSheet,
-  };
+//   const cssStyle = await page.evaluate(() => {
+//     const nodeList = Array.from(document.querySelectorAll('style'));
+//     const styles = nodeList.map((node) => node.innerHTML);
+//     return styles;
+//   });
 
-  await browser.close();
-  return data;
-};
+//   const date = new Date().toDateString();
 
-module.exports = wikipediaScraper;
+//   const data = {
+//     article: article,
+//     url: URL,
+//     title: title,
+//     displayImage: displayImage,
+//     addedAt: date,
+//     isComplete: false,
+//     cssSheet: cssSheet,
+//     cssStyle: cssStyle,
+//   };
+
+//   await browser.close();
+//   return data;
+// };
+
+// module.exports = wikipediaScraper;

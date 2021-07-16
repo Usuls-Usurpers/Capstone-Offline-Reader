@@ -5,6 +5,7 @@ import { Router } from "react-router-dom";
 import history from "./history";
 import App from "./App";
 import store from "./store/index";
+import swRegister from "./swRegister";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -14,3 +15,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("app")
 );
+
+swRegister();

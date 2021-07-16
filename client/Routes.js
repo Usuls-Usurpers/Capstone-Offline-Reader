@@ -1,42 +1,53 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import { withRouter, Route, Switch } from "react-router-dom";
 import AllArticles from "./components/AllArticles";
 import SingleArticle from "./components/SingleArticle";
-import AllUsers from "./components/AllUsers";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import { me } from './store/auth';
+import UserHome from "./components/UserHome";
+import { me } from "./store/auth";
 
 class Routes extends Component {
   async componentDidMount() {
-    await this.props.authorize()
+    await this.props.authorize();
   }
+
   render() {
+    const { isLoggedIn } = this.props;
     return (
       <div>
+        {isLoggedIn ? (
+          <Switch>
+            <Route path="/home" component={UserHome} />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        )}
         <Switch>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          <Route path="/home" component={Home} />
-          <Route path="/users" component={AllUsers} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/articles" component={AllArticles} />
-          <Route exact path="/articles/view-article" component={SingleArticle} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
+          <Route
+            exact
+            path="/articles/view-article"
+            component={SingleArticle}
+          />
         </Switch>
       </div>
     );
   }
 }
-const mapState = state => {
+const mapState = (state) => {
   return {
-    isLoggedIn: !!state.auth.uid
-  }
-}
+    isLoggedIn: !!state.auth.uid,
+  };
+};
 
-const mapDispatch = dispatch => ({
-  authorize: () => dispatch(me())
-})
-export default withRouter(connect(mapState, mapDispatch)(Routes))
+const mapDispatch = (dispatch) => ({
+  authorize: () => dispatch(me()),
+});
+export default withRouter(connect(mapState, mapDispatch)(Routes));
