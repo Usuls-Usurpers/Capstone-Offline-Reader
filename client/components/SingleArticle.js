@@ -12,6 +12,12 @@ class SingleArticle extends React.Component {
 
   componentDidMount() {
     console.log('this.props in Single Article: ', this.props);
+    const topNav = document.getElementById('mw-navigation');
+    const sideNav = document.getElementById('mw-page-base');
+    if (topNav || sideNav) {
+      topNav.remove();
+      sideNav.remove();
+    }
     if (this.props.article.cssSheet.length) {
       this.props.article.cssSheet.forEach((link) => {
         let indLink = document.createElement('link');
