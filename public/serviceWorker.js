@@ -1,27 +1,11 @@
 "use strict";
 
 const proofCacheFiles = [
-  //   "client/components/AllProducts.js",
-  //   "client/store/allProducts.js",
-  //   "client/store/index.js",
-  //   "client/App.js",
-  //   "client/index.js",
-  //   "client/Routes.js",
   //   "client/swRegister.js",
   //   "public/favicon.ico",
   ".",
   "index.html",
   "style.css",
-  //   "script/seed.js",
-  //   "server/api/index.js",
-  //   "server/api/products.js",
-  //   "server/api/users.js",
-  //   "server/db/models/Product.js",
-  //   "server/db/models/User.js",
-  //   "server/db/db.js",
-  //   "server/db/index.js",
-  //   "server/app.js",
-  //   "server/index.js",
 ];
 
 function cacheAssets() {
