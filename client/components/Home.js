@@ -5,7 +5,7 @@ class Home extends Component {
     return (
       <div id="welcome">
         <h3>Welcome to Cache-22!</h3>
-        <img src="https://i.imgur.com/LH3S0X4.png" alt="cache-22 logo" />
+        <img src="https://i.imgur.com/FAoz5wk.png" alt="cache-22 logo" />
       </div>
     );
   }
