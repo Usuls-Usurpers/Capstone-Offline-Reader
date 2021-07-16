@@ -38,10 +38,15 @@ class SingleArticle extends React.Component {
   render() {
     const article = this.props.article || {};
     return (
-      <div>
-        {/* <link rel="stylesheet" type="text/css" href={article.cssSheet} /> */}
-        <div>{ReactHtmlParser(article.article)}</div>
-      </div>
+      <>
+        <div style={{ textAlign: 'center' }}>
+          <a href={article.url}>Visit Original</a>
+        </div>
+        <div>
+          {/* <link rel="stylesheet" type="text/css" href={article.cssSheet} /> */}
+          <div>{ReactHtmlParser(article.article)}</div>
+        </div>
+      </>
     );
   }
 }
