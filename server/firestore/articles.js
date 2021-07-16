@@ -62,15 +62,6 @@ const getSingleArticle = async (req, res, next) => {
 const addArticle = async (req, res, next) => {
   try {
     const { url, userId } = req.body;
-    // let resource;
-    // if (url.includes('medium')) {
-    //   resource = scraperObj.medium;
-    // } else if (url.includes('nytimes')) {
-    //   resource = scraperObj.nytimes;
-    // } else if (url.includes('wikipedia')) {
-    //   resource = scraperObj.wikipedia;
-    // }
-    // const data = await resource(url);
     const data = await webScraper(url);
     await db
       .collection('users')

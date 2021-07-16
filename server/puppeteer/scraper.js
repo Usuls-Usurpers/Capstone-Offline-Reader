@@ -9,11 +9,6 @@ const webScraper = async (URL) => {
 
   await page.waitForSelector('body');
 
-  // const article = await page.evaluate(
-  //   () =>
-  //     // document.querySelector('#content').innerHTML
-  //     document.querySelector('body').innerHTML
-  // );
   let article;
   if (URL.includes('wikipedia')) {
     article = await page.evaluate(
@@ -27,7 +22,6 @@ const webScraper = async (URL) => {
 
   const title = await page.evaluate(
     () =>
-      // document.querySelector('#firstHeading').innerHTML
       document.querySelector('title').textContent
   );
 
