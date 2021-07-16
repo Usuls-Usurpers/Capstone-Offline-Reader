@@ -1,11 +1,11 @@
-const mediumScraper = require('./medium');
-const nytimesScraper = require('./nytimes');
-const wikipediaScraper = require('./wikipedia');
+// const mediumScraper = require('./medium');
+// const nytimesScraper = require('./nytimes');
+// const wikipediaScraper = require('./wikipedia');
 
-const scraperObj = {
-  medium: mediumScraper,
-  nytimes: nytimesScraper,
-  wikipedia: wikipediaScraper,
-};
+// const scraperObj = {
+//   medium: mediumScraper,
+//   nytimes: nytimesScraper,
+//   wikipedia: wikipediaScraper,
+// };
 
-module.exports = scraperObj;
+// module.exports = scraperObj;

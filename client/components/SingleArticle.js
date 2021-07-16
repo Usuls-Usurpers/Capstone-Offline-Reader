@@ -12,6 +12,14 @@ class SingleArticle extends React.Component {
 
   componentDidMount() {
     console.log('this.props in Single Article: ', this.props);
+    const topNav = document.getElementById('mw-navigation');
+    const sideNav = document.getElementById('mw-page-base');
+    // const wikiNav = document.querySelector('.css-1j876bv');
+    if (topNav || sideNav) {
+      topNav.remove();
+      sideNav.remove();
+      // wikiNav.remove();
+    }
     if (this.props.article.cssSheet.length) {
       this.props.article.cssSheet.forEach((link) => {
         let indLink = document.createElement('link');
@@ -38,10 +46,15 @@ class SingleArticle extends React.Component {
   render() {
     const article = this.props.article || {};
     return (
-      <div>
-        {/* <link rel="stylesheet" type="text/css" href={article.cssSheet} /> */}
-        <div>{ReactHtmlParser(article.article)}</div>
-      </div>
+      <>
+        <div style={{ textAlign: 'center' }}>
+          <a href={article.url}>Visit Original</a>
+        </div>
+        <div>
+          {/* <link rel="stylesheet" type="text/css" href={article.cssSheet} /> */}
+          <div>{ReactHtmlParser(article.article)}</div>
+        </div>
+      </>
     );
   }
 }
