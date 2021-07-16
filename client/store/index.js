@@ -3,13 +3,11 @@ import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import userReducer from "./users";
 import articlesReducer from "./articles";
 import singleArticleReducer from "./singleArticle";
 import authReducer from "./auth";
 
 const reducer = combineReducers({
-  users: userReducer,
   articles: articlesReducer,
   article: singleArticleReducer,
   auth: authReducer,

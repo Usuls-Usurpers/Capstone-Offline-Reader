@@ -5,7 +5,6 @@ import {logout, me} from '../store/auth'
 
 class Navbar extends Component {
   render() {
-  // console.log('props in navbar', this.props.handleClick)
   return (
     <div>
       <nav>

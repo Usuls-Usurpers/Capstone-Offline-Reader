@@ -63,14 +63,8 @@ const mapState = (state) => {
   console.log('State in single article: ', state);
   return {
     article: state.article,
-    //isLoggedIn: !!state.auth.id,
   };
 };
 
-// const mapDispatch = (dispatch) => {
-//   return {
-//     loadSingleArticle: (id) => dispatch(fetchSingleArticle(id)),
-//   };
-// };
 
 export default connect(mapState)(SingleArticle);
