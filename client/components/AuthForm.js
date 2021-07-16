@@ -13,19 +13,19 @@ const AuthForm = props => {
     {login ? (
      <div>
       <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
+        <div id= "#formId">
+           {/* <label htmlFor="email">
             <small>email</small>
-          </label>
-          <input name="email" type="text" />
+           </label> */}
+          <input name="email" type="text" placeholder="email"/>
         </div>
-        <div>
-          <label htmlFor="password">
+        <div id= "#formId">
+          {/* <label htmlFor="password">
             <small>password</small>
-          </label>
-          <input name="password" type="password" />
+          </label> */}
+          <input name="password" type="password" placeholder="password"/>
         </div>
-        <div>
+        <div id= "#formId">
           <button type="submit">{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
@@ -34,34 +34,36 @@ const AuthForm = props => {
     ): (
       <div>
       <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="firstName">
+        <div id= "#formId">
+          {/* <label htmlFor="firstName">
             <small>first name</small>
-          </label>
-          <input name="firstName" type="firstName" />
+          </label> */}
+          <input name="firstName" type="firstName" placeholder="first name"/>
         </div>
-        <div>
-          <label htmlFor="lastName">
+        <div id= "#formId">
+          {/* <label htmlFor="lastName">
             <small>last name</small>
-          </label>
-          <input name="lastName" type="lastName" />
+          </label> */}
+          <input name="lastName" type="lastName" placeholder="last name"/>
         </div>
-        <div>
-          <label htmlFor="email">
+        <div id= "#formId">
+          {/* <label htmlFor="email">
             <small>email</small>
-          </label>
-          <input name="email" type="text" />
+          </label> */}
+          <input name="email" type="text" placeholder="email"/>
         </div>
-        <div>
-          <label htmlFor="password">
+        <div id= "#formId">
+          {/* <label htmlFor="password">
             <small>password</small>
-          </label>
-          <input name="password" type="password" />
+          </label> */}
+          <input name="password" type="password" placeholder="password"/>
         </div>
-        <div>
+        <div id= "#formId">
           <button type="submit">{displayName}</button>
         </div>
+        <div id="formId">
         {error && error.response && <div> {error.response.data} </div>}
+        </div>
       </form>
     </div>
     )}
