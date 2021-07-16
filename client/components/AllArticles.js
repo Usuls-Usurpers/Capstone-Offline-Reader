@@ -35,6 +35,7 @@ class AllArticles extends React.Component {
   }
 
   render() {
+    const { articles } = this.props || []
     return (
       <div>
         {this.props.isLoggedIn ? (
@@ -57,7 +58,7 @@ class AllArticles extends React.Component {
             })}
           </div>
         ) : (
-          <h1>nothing here!</h1>
+          <h1>loading...</h1>
         )}
       </div>
     );
