@@ -44,9 +44,9 @@ class AllArticles extends React.Component {
     const { articles } = this.props || []
     return (
       <div>
-        {this.props.isLoggedIn ? (
+        {this.props.isLoggedIn && articles.length > 0 ? (
           <div className="all-articles">
-            {this.props.articles.map((article, index) => {
+            {articles.map((article, index) => {
               return (
                 <div key={article.id} className="article-items">
                   <h3>{article.title}</h3>
@@ -64,7 +64,7 @@ class AllArticles extends React.Component {
             })}
           </div>
         ) : (
-          <h1>loading...</h1>
+          <h1>navigate to our home page and add an article!</h1>
         )}
       </div>
     );
