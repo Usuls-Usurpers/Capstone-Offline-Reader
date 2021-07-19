@@ -9,12 +9,14 @@ module.exports = router;
 
 router.get('/me', async (req, res, next) => {
   try {
-    let currentUser;
-    await auth.onAuthStateChanged((user) => {
-      if (user) {
-        currentUser = user
-      }
-    })
+    let token = req.headers.authorization
+    // let currentUser;
+    // await auth.verifyIdToken(token)
+    // await auth.onAuthStateChanged((user) => {
+    //   if (user) {
+    //     currentUser = user
+    //   }
+    // })
     res.json(currentUser)
   } catch (err) {
     next(err)
@@ -48,6 +50,7 @@ router.post('/signup', async (req, res, next) => {
     const display = `${firstName} ${lastName}`
     const userCred = await auth.createUserWithEmailAndPassword(email, password)
     const newUser = userCred.user
+    console.log('newuser obj sent back>>>>', newUser)
     await newUser.updateProfile({
       displayName: display
     })

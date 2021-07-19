@@ -3,6 +3,8 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
+
+
 const SET_AUTH = 'SET_AUTH'
 
 /**
@@ -16,8 +18,26 @@ const setAuth = auth => ({type: SET_AUTH, auth})
 
 export const me = () => async dispatch => {
   try {
-    const res = await axios.get('/auth/me')
-    dispatch(setAuth(res.data))
+    const accessToken = window.localStorage.getItem("ACCESSTOKEN")
+    const expTime = window.localStorage.getItem("EXPTIME")
+    const refreshToken = window.localStorage.getItem("REFRESHTOKEN")
+    console.log('in me thunk>>>', accessToken, expTime, refreshToken)
+    if (parsedInt(expTime) < Date.now()) {
+      const res = await axios.get('/auth/me', {
+        headers: {
+          authorization: accessToken
+        }
+      })
+      return dispatch(setAuth(res.data))
+    }
+    else {
+      const res = await axios.get('/auth/me', {
+        headers: {
+          authorization: refreshToken
+        }
+      })
+      return dispatch(setAuth(res.data))
+    }
   } catch (err) {
     next(err)
   }
@@ -27,7 +47,14 @@ export const authenticate = (infoObj, history) => async dispatch => {
   try {
     const [ email, password, method, firstName, lastName ] = infoObj
     const res = await axios.post(`/auth/${method}`, {email, password, firstName, lastName})
-    dispatch(setAuth(res.data))
+    // console.log('res.data in authenticate thunk>>>', res.data)
+    // console.log('accesstoken in authenticate thunk>>>', res.data.stsTokenManager.accessToken)
+    const { stsTokenManager } = res.data
+    console.log('stsTokenManager stringified', JSON.stringify(stsTokenManager.accessToken))
+    window.localStorage.setItem("ACCESSTOKEN", JSON.stringify(stsTokenManager.accessToken))
+    window.localStorage.setItem("EXPTIME", JSON.stringify(stsTokenManager.expirationTime))
+    window.localStorage.setItem("REFRESHTOKEN", JSON.stringify(stsTokenManager.refreshToken))
+    dispatch(me())
     history.push('/home')
   } catch (authError) {
     return dispatch(setAuth({error: authError}))
