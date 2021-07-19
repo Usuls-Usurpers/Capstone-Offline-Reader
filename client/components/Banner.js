@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import Navbar from './Navbar';
 
 class Banner extends Component {
   render() {
@@ -10,6 +11,7 @@ class Banner extends Component {
           alt="cache-22-pink logo"
         />
         <p>Cache-22</p>
+        <Navbar />
       </div>
     );
   }
