@@ -4,8 +4,7 @@ const proofCacheFiles = [
   ".",
   "index.html",
   "style.css",
-  "./components/AllArticles.js",
-  "./components/Home.js",
+  "client/components/AllArticles.js",
 ];
 
 function cacheAssets() {
