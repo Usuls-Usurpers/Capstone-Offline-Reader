@@ -7,6 +7,8 @@ class Banner extends Component {
       <div id="banner">
         <img
           id="banner-logo"
+          width={261}
+          height={56}
           src="https://i.imgur.com/qqgpF0k.png"
           alt="cache-22-pink logo"
         />
