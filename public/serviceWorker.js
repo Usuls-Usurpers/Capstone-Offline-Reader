@@ -1,6 +1,11 @@
 "use strict";
 
-const proofCacheFiles = [".", "index.html", "style.css"];
+const proofCacheFiles = [
+  ".",
+  "index.html",
+  "style.css",
+  "client/components/AllArticles.js",
+];
 
 function cacheAssets() {
   caches.open("cache-v1").then(function (cache) {

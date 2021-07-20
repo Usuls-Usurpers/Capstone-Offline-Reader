@@ -20,9 +20,9 @@ class AllArticles extends React.Component {
   }
 
   async componentDidUpdate(prevProps) {
-      if (prevProps.userId !== this.props.userId) {
-          await this.props.fetchArticles(this.props.userId);
-      }
+    if (prevProps.userId !== this.props.userId) {
+      await this.props.fetchArticles(this.props.userId);
+    }
   }
 
   handleSubmit(event) {
@@ -41,7 +41,7 @@ class AllArticles extends React.Component {
   }
 
   render() {
-    const { articles } = this.props || []
+    const { articles } = this.props || [];
     return (
       <div>
         {this.props.isLoggedIn && articles.length > 0 ? (
@@ -51,10 +51,11 @@ class AllArticles extends React.Component {
                 <div key={article.id} className="article-items">
                   <h3>{article.title}</h3>
                   <img src={article.displayImage} />
-                  <div id="buttons-all-articles">
+                  <div id="buttons-allArticles">
                     <button value={index} onClick={this.handleSubmit}>
                       View Article
                     </button>
+                    <br />
                     <button value={index} onClick={this.handleDelete}>
                       Remove
                     </button>
@@ -64,7 +65,9 @@ class AllArticles extends React.Component {
             })}
           </div>
         ) : (
-          <h1>navigate to our home page and add an article!</h1>
+          <h1 id="message-allArticles">
+            Navigate to our home page to add an article!
+          </h1>
         )}
       </div>
     );

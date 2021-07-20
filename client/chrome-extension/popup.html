@@ -1,10 +1,59 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="button.css">
-  </head>
-  <body>
-    <button id="send-url"></button>
-    <script src="popup.js"></script>
-  </body>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script type="module" src="popup.js" defer></script>
+  <script type="module" src="background.js"></script>
+  <style>
+    body{
+            background-color: #f9f9fa;
+            color: black;
+        }
+        #save-page-btn{
+            height: 30px;
+            font-size: 12px;
+            background: #10576a;
+            color: #f9f9fa;
+            text-align: center;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #save-page-btn[disabled]{
+            background-color: #f9f9fa;
+            color: #10576a;
+            cursor: auto;
+        }
+        #auth-form > *{
+            margin: 5px;
+        }
+        #login-info button{
+            background-color: #10576a;
+            border-radius:17px;
+            cursor:pointer;
+            color:#f9f9fa;
+            font-size:15px;
+            padding:6px 13px;
+        }
+    </style>
+</head>
+
+<body>
+  <div>
+    <button id="save-page-btn" type="button">Save Article</button>
+    <p id='page-saved-message'></p>
+  </div>
+  <div id="login-info">
+    <form id="auth-form">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" />
+      <button type="submit">Login</button>
+    </form>
+    <p id="login-error-message"></p>
+  </div>
+</body>
+
 </html>
