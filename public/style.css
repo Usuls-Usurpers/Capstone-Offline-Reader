@@ -55,7 +55,7 @@ form button {
   font-weight: 600;
   border-radius: 5px;
   width: 14%;
-  margin: 5px 0 0 0;
+  margin: 5px 10px 0 10px;
 }
 
 #welcome h3 {
@@ -97,6 +97,11 @@ form button {
   flex-direction: column;
   margin: 5px 25px 15px 25px;
   padding: 15px;
+  align-items: center;
+  font-size: 1.2em;
+  color: #10576a;
+  justify-content: space-between;
+  align-content: space-between;
 }
 
 .article-items img {
@@ -111,11 +116,10 @@ form button {
   max-height: 300px;
 }
 
-#buttons-all-articles {
+#buttons-allArticles {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 10px 0px 5px 0;
+  padding: 12px 25px;
+  margin: 10px 0px 5px 0px;
 }
 
 #navbar {
@@ -123,3 +127,39 @@ form button {
   font-size: 0.85em;
 }
 
+#link-to-original {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 1em;
+  font-weight: 500;
+  text-decoration: underline;
+  color: #10576a;
+  text-align: center;
+}
+
+button {
+  background-color: #10576a;
+  border: none;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 5px;
+  font-weight: 400;
+  margin: 5px 25px 0 25px;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: #75b9bd;
+  color: #10576a;
+}
+
+#message-allArticles {
+  font-size: 2.2em;
+  color: #10576a;
+  text-align: center;
+}
