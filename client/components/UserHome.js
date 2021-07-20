@@ -5,6 +5,7 @@ import URLForm from "./URLForm";
 class UserHome extends Component {
   render() {
     const { name } = this.props;
+    console.log('props in userhome>>>', this.props)
     return (
       <div id="welcome">
         <div>
@@ -18,7 +19,7 @@ class UserHome extends Component {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.uid,
-    name: state.auth.displayName,
+    name: state.auth.name,
   };
 };
 

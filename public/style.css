@@ -1,4 +1,4 @@
-/* CSS HEX 
+/* CSS HEX
 --blue-sapphire: #10576aff;
 rgb(16, 87, 106)
 --pale-pink: #ffd6dcff;
@@ -9,7 +9,7 @@ font-family: 'Poppins', sans-serif;
 */
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0px 40px 10px 40px;
   background-color: #f9f9fa;
 }
@@ -18,7 +18,8 @@ a {
   text-decoration: none;
   font-weight: 500;
   font-size: 1.7em;
-  color: #8b2635;
+  /* color: #8b2635; */
+  color: white;
 }
 
 label {
@@ -33,7 +34,7 @@ nav a {
 form {
   box-sizing: border-box;
   text-align: center;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 form input {
