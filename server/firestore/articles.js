@@ -1,8 +1,8 @@
 'use strict';
 
-const firebase = require('../db/db');
+const { db } = require('../db/db');
 const Article = require('../db/models/Article');
-const db = firebase.firestore();
+// const db = firebase.firestore();
 const webScraper = require('../puppeteer/scraper');
 
 const getAllArticles = async (req, res, next) => {
