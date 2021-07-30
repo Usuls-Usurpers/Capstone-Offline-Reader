@@ -16,3 +16,7 @@ Firestore - cloud database
 Firebase - Authentication
 Chrome extension
 
+### Notes
+
+This app is in proecess. For more information on specifi features and their current state please see our wiki:
+https://github.com/Usuls-Usurpers/Capstone-Offline-Reader/wiki
